@@ -59,12 +59,14 @@
 }
 
 .btn-primary:hover {
-  background-color: #0d67ed;
+  background-color: #5798f9;
 }
 
 @media (max-width: 992px) {
   .navbar-nav .nav-link {
     text-align: center;
+      background-color: #5798f9;
+      
     padding: 10px;
   }
 
@@ -88,6 +90,6 @@
 .dropdown-item.active {
   font-weight: bold;
   color: rgb(0, 213, 255) !important;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(9, 145, 223, 0.697);
   border-radius: 6px;
 }
