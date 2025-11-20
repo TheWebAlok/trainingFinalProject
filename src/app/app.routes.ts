@@ -1,4 +1,3 @@
-import { Keyboard } from './shared/models/keyboard/keyboard.model';
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
@@ -59,6 +58,7 @@ import { AllMuharComponent } from './admin/categories/all-muhar/all-muhar.compon
 import { EditMuharComponent } from './admin/categories/edit-muhar/edit-muhar.component';
 import { AllPrinterComponent } from './admin/categories/all-printer/all-printer.component';
 import { EditPrinterComponent } from './admin/categories/edit-printer/edit-printer.component';
+import { AboutComponent } from './customer/about/about.component';
 
 
 
@@ -81,7 +81,7 @@ export const routes: Routes = [
       { path: "a4", component: A4papperComponent },
 
       { path: "order/details", component: OrderDetailsComponent },
-      // { path: "orders", component: OrdersComponent },
+      { path: "about", component: AboutComponent },
       { path: "contact", component: ContactComponent },
       { path: "cart", component: CartComponent },
       { path: "billings", component: BillingsComponent },
