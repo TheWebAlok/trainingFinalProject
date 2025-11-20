@@ -86,53 +86,102 @@ addToCartHandler(item: any) {
 
 }
   // ---------------------- BUY NOW → RAZORPAY PAYMENT ----------------------
-  buyNow(item: any) {
-         if (!this.authService.getIsLoggedIn()) {
-      this.toastr.error("Please login first!");
-      this.router.navigate(['/login']);
-      return;
-    }
+ async buyNow(item: any) {
 
-    const user = {
-      email: sessionStorage.getItem("email") || "",
-      name: sessionStorage.getItem("name") || "Guest",
-      uid: sessionStorage.getItem("uid") || "unknown"
-    };
-
-    if (!user.uid) {
-      this.toastr.error("User not found. Please login again.");
-      return;
-    }
-    let amount = item.price;
-
-    var options = {
-      key: 'rzp_test_R7raQKFj1qN71z',
-      amount: amount * 100,
-      currency: 'INR',
-      name: 'Maa Computers',
-      description: item.name,
-
-      prefill: {
-        name: 'Customer',
-        email: 'customer@example.com',
-        contact: '+919876543210'
-      },
-
-      theme: { color: '#3399cc' },
-
-      handler: (response: any) => {
-        this.toastr.success('Payment Successful!');
-        console.log("Payment details:", response);
-      }
-    };
-
-    var rzp = new Razorpay(options);
-
-    rzp.on('payment.failed', (err: any) => {
-      this.toastr.error('Payment Failed');
-      console.log(err);
-    });
-
-    rzp.open();
+  // ---------------------------
+  //  CHECK LOGIN
+  // ---------------------------
+  if (!this.authService.getIsLoggedIn()) {
+    this.toastr.error("Please login first!");
+    this.router.navigate(['/login']);
+    return;
   }
+
+  const amount = item.price; // single product price
+
+  // ---------------------------
+  //  SHOW CONFIRMATION POPUP
+  // ---------------------------
+  Swal.fire({
+    title: 'Buy Now?',
+    text: `You are buying: ${item.name} | ₹${amount}`,
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Proceed to Payment',
+  }).then((result) => {
+
+    if (result.isConfirmed) {
+
+      const options: any = {
+        key: 'rzp_test_R7raQKFj1qN71z',
+        amount: amount * 100,
+        currency: 'INR',
+        name: 'Maa Computer Press',
+        description: 'Instant Buy',
+
+        prefill: {
+          name: this.authService.getName(),
+          email: this.authService.getEmail(),
+          contact: this.authService.getPhone()
+        },
+
+        theme: { color: '#3399cc' },
+
+        handler: async (res: any) => {
+          this.toastr.success("Payment Successful!");
+          console.log("Payment Done:", res.razorpay_payment_id);
+
+          // ------------------------------------
+          //  SAVE ORDER IN FIRESTORE (Same Format)
+          // ------------------------------------
+          const orderData = {
+            paymentId: res.razorpay_payment_id,
+            date: new Date().toISOString(),
+
+            customer: {
+              name: this.authService.getName(),
+              email: this.authService.getEmail(),
+              phone: this.authService.getPhone(),
+              address: this.authService.getAddress()
+            },
+
+            items: [
+              {
+                ...item,
+                quantity: 1
+              }
+            ],
+
+            subtotal: amount,
+            discount: 0,
+            finalAmount: amount
+          };
+
+          try {
+            await this.cartService.saveOrder(orderData);
+
+            // Redirect & pass data
+            this.router.navigate(['/order/details'], {
+              state: { order: orderData }
+            });
+
+          } catch (err) {
+            console.error("Order Save Failed:", err);
+            this.toastr.error("Failed to save order!");
+          }
+        }
+      };
+
+      const rzp = new Razorpay(options);
+
+      rzp.on('payment.failed', (err: any) => {
+        this.toastr.error("Payment Failed!");
+        console.error(err);
+      });
+
+      rzp.open();
+    }
+  });
+}
+
 }

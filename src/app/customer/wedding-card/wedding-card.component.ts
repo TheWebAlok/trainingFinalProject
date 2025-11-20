@@ -20,7 +20,7 @@ import { AuthService } from '../../shared/auth/auth.service';
 export class WeddingCardComponent implements OnInit {
   weddingCardsList: WeddingCard[] = [];
   userLoggedIn: boolean = false;
-
+  
   constructor(
     private weddingCardService: WeddingCardService,
     private cartService: CartService,

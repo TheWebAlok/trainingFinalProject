@@ -4,67 +4,108 @@
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <div class="card shadow-lg border-0 rounded-4 p-4">
-        <h4 class="mb-3 text-success fw-bold">Fill Order Details To Print Wedding Card</h4>
+        <h4 class="mb-3 text-success fw-bold">
+          Fill Order Details To Print Wedding Card
+        </h4>
 
         <form #orderForm="ngForm" (ngSubmit)="submitOrder(orderForm)">
+
           <div class="row">
             <div class="col-md-6 mb-3">
               <label class="form-label">Customer Name</label>
-              <input type="text" class="form-control"
-                name="customerName" [(ngModel)]="orderData.customerName" required>
+              <input
+                type="text"
+                class="form-control"
+                name="customerName"
+                [(ngModel)]="orderData.customerName"
+                required />
             </div>
 
             <div class="col-md-6 mb-3">
               <label class="form-label">Email</label>
-              <input type="email" class="form-control"
-                name="email" [(ngModel)]="orderData.email" required>
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                [(ngModel)]="orderData.email"
+                required />
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6 mb-3">
               <label class="form-label">Mobile</label>
-              <input type="text" class="form-control"
-                name="mobile" [(ngModel)]="orderData.mobile" required>
+              <input
+                type="text"
+                class="form-control"
+                name="mobile"
+                [(ngModel)]="orderData.mobile"
+                required />
             </div>
 
             <div class="col-md-6 mb-3">
               <label class="form-label">Address</label>
-              <textarea class="form-control" rows="1"
-                name="address" [(ngModel)]="orderData.address" required></textarea>
+              <textarea
+                class="form-control"
+                rows="1"
+                name="address"
+                [(ngModel)]="orderData.address"
+                required>
+              </textarea>
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6 mb-3">
               <label class="form-label">Product Name</label>
-              <input type="text" class="form-control"
-                name="productName" [(ngModel)]="orderData.productName" required>
+              <input
+                type="text"
+                class="form-control"
+                name="productName"
+                [(ngModel)]="orderData.productName"
+                required />
             </div>
 
             <div class="col-md-3 mb-3">
               <label class="form-label">Quantity</label>
-              <input type="number" class="form-control"
-                name="quantity" [(ngModel)]="orderData.quantity" required>
+              <input
+                type="number"
+                class="form-control"
+                name="quantity"
+                [(ngModel)]="orderData.quantity"
+                required />
             </div>
 
             <div class="col-md-3 mb-3">
               <label class="form-label">Price</label>
-              <input type="number" class="form-control"
-                name="price" [(ngModel)]="orderData.price" required>
+              <input
+                type="number"
+                class="form-control"
+                name="price"
+                [(ngModel)]="orderData.price"
+                required />
             </div>
           </div>
 
+          <!-- Fixed File Upload -->
           <div class="row">
             <div class="col-md-12 mb-3">
               <label class="form-label">Upload Details</label>
-              <input type="file" class="form-control"
-                >
+              <input
+                type="file"
+                class="form-control"
+                (change)="onFileSelected($event)"
+                required />
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary w-100"
-            [disabled]="orderForm.invalid">Place Order</button>
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            [disabled]="orderForm.invalid">
+            Place Order
+          </button>
+
         </form>
       </div>
     </div>

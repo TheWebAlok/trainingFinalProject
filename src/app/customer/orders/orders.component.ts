@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { OrdersService } from '../../services/orders/orders.service';
-import { Orders } from '../../shared/models/orders/orders.model';
 import { ToastrService } from 'ngx-toastr';
 import { CloudinaryService } from '../../services/cloudinary/cloudinary.service';
 import { AuthService } from '../../shared/auth/auth.service';
 import { Router } from '@angular/router';
-import { WeddingCard } from '../../shared/models/weddingCard/wedding-card.model';
+import { Order } from '../../shared/models/order/order.model';
 
 declare var Razorpay: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-orders',
@@ -20,7 +20,7 @@ declare var Razorpay: any;
 })
 export class OrdersComponent {
 
-  orderData: Orders = {
+  orderData: Order = {
     customerName: '',
     email: '',
     mobile: '',
@@ -32,8 +32,7 @@ export class OrdersComponent {
     createdAt: new Date()
   };
 
-  ordersList: Orders[] = [];
-  weddingCard: WeddingCard[] = [];
+  ordersList: Order[] = [];
   selectedFile: File | null = null;
 
   constructor(
@@ -42,96 +41,192 @@ export class OrdersComponent {
     private toastr: ToastrService,
     private authService: AuthService,
     private router: Router,
-
-
   ) {
     this.getAllOrders();
   }
 
-
+  // PICK FILE
   onFileSelected(event: any) {
-    if (event.target.files && event.target.files.length > 0) {
+    if (event.target.files?.length > 0) {
       this.selectedFile = event.target.files[0];
     }
   }
 
-
-  submitOrder(form: any) {
-    if (form.invalid || !this.selectedFile) {
-      this.toastr.error('Please fill all fields and upload image.');
+  // ---------------------------
+  // SINGLE ITEM PAYMENT (Muhar, Printer...)
+  // ---------------------------
+  async buyNowItem(item: any) {
+    if (!this.authService.getIsLoggedIn()) {
+      this.toastr.error("Please login first!");
       return;
     }
+
+    const user = {
+      name: sessionStorage.getItem("name") || "Customer",
+      email: sessionStorage.getItem("email") || "customer@example.com",
+      phone: sessionStorage.getItem("phone") || "9999999999"
+    };
+
+    const amount = item.price;
+
+    const options: any = {
+      key: "rzp_test_R7raQKFj1qN71z",
+      amount: amount * 100,
+      currency: "INR",
+      name: "Maa Computer Press",
+      description: item.name || item.type,
+      prefill: {
+        name: user.name,
+        email: user.email,
+        contact: user.phone
+      },
+      theme: { color: "#0d6efd" },
+      handler: async (res: any) => {
+        Swal.fire({
+          icon: "success",
+          title: "Payment Successful!"
+        });
+
+        console.log("Payment Success:", res);
+
+        // SAVE ORDER IN FIRESTORE
+        const orderData: Order = {
+          customerName: user.name,
+          email: user.email,
+          mobile: user.phone,
+          address: this.authService.getAddress() || '',
+          productName: item.name || item.type,
+          quantity: 1,
+          price: amount,
+          totalAmount: amount,
+          paymentId: res.razorpay_payment_id,
+          status: true,
+          createdAt: new Date()
+        };
+
+        try {
+          await this.orderService.addOrder(orderData);
+          this.toastr.success("Order saved successfully!");
+          this.router.navigate(['/order/details'], { state: { order: orderData } });
+        } catch (err) {
+          console.error("Order Save Failed:", err);
+          this.toastr.error("Failed to save order!");
+        }
+      }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.on("payment.failed", (err: any) => {
+      Swal.fire({ icon: "error", title: "Payment Failed" });
+      console.error(err);
+    });
+    rzp.open();
+  }
+
+  // ---------------------------
+  // CUSTOM ORDER PAYMENT + IMAGE UPLOAD
+  // ---------------------------
+  async submitOrder(form: any) {
+    if (form.invalid || !this.selectedFile) {
+      this.toastr.error('Please fill all fields and upload an image.');
+      return;
+    }
+
     if (!this.authService.getIsLoggedIn()) {
       this.toastr.error("Please login first!");
       this.router.navigate(['/login']);
       return;
     }
 
-    const amount = (this.orderData.price || 0) * (this.orderData.quantity || 1) * 100;
+    const amount = (this.orderData.price || 0) * (this.orderData.quantity || 1);
 
     const options: any = {
       key: 'rzp_test_R7raQKFj1qN71z',
-      amount: amount,
+      amount: amount * 100,
       currency: 'INR',
       name: 'Maa Computer Press',
-      description: 'Order Payment',
+      description: 'Custom Order Payment',
       prefill: {
         name: this.orderData.customerName,
         email: this.orderData.email,
         contact: this.orderData.mobile
       },
       theme: { color: '#3399cc' },
-      handler: (response: any) => {
-        this.orderData.totalAmount = amount / 100;
-        this.orderData.paymentId = response.razorpay_payment_id;
-        this.orderData.status = true;
-        this.orderData.createdAt = new Date();
+      handler: async (res: any) => {
+        this.toastr.success("Payment Successful!");
 
-        this.toastr.success('Payment Successful');
-        this.router.navigate(["/order/details"])
-        this.uploadAndSaveOrder();
+        this.orderData.paymentId = res.razorpay_payment_id;
+        this.orderData.totalAmount = amount;
+        this.orderData.createdAt = new Date();
+        this.orderData.status = true;
+
+        try {
+          await this.uploadAndSaveOrder();
+          this.router.navigate(['/order/details'], { state: { order: this.orderData } });
+        } catch (err) {
+          console.error("Order Save Error:", err);
+        }
       }
     };
 
-    const rzp1 = new Razorpay(options);
-    rzp1.on('payment.failed', () => {
-      this.toastr.error('Payment Failed');
+    const rzp = new Razorpay(options);
+    rzp.on("payment.failed", () => {
+      this.toastr.error("Payment Failed");
     });
-    rzp1.open();
+    rzp.open();
   }
 
+  // UPLOAD IMAGE + SAVE ORDER TO FIRESTORE
+  async uploadAndSaveOrder() {
+    if (!this.selectedFile) throw new Error("No file selected!");
 
-  uploadAndSaveOrder() {
-    if (!this.selectedFile) return;
-    
-    this.cloudinary.uploadImage(this.selectedFile).subscribe(
-      (res: any) => {
-        this.orderData.imageUrl = res.secure_url;
-        this.orderService.addOrder(this.orderData).then(() => {
-          this.toastr.success('Order placed successfully!');
-          this.resetForm();
-        });
-      },
-      () => {
-        this.toastr.error('Image upload failed');
-      }
-    );
+    return new Promise<void>((resolve, reject) => {
+      this.cloudinary.uploadImage(this.selectedFile!).subscribe(
+        async (res: any) => {
+          this.orderData.imageUrl =
+            res.secure_url || res.url || res.data?.secure_url || res.data?.url;
+
+          if (!this.orderData.imageUrl) {
+            this.toastr.error("Failed to get image URL from Cloudinary!");
+            return reject("Cloudinary URL missing");
+          }
+
+          try {
+            await this.orderService.addOrder(this.orderData);
+            this.toastr.success("Order placed successfully!");
+            this.resetForm();
+            resolve();
+          } catch (err) {
+            console.error("Firestore Save Error:", err);
+            this.toastr.error("Failed to save order to Firestore");
+            reject(err);
+          }
+        },
+        (err) => {
+          console.error("Cloudinary Upload Error:", err);
+          this.toastr.error("Image upload failed");
+          reject(err);
+        }
+      );
+    });
   }
 
+  // FETCH ALL ORDERS
   getAllOrders() {
     this.orderService.getOrders().subscribe(
-      (data: Orders[]) => {
-        this.ordersList = data;
-      },
-      () => {
-        this.toastr.error('Failed to load orders');
-      }
+      (data: Order[]) => this.ordersList = data,
+      (err) => this.toastr.error("Failed to load orders")
     );
   }
+
+  // DELETE ORDER
   removeOrder(id: string) {
-    this.orderService.deleteOrder(id);
-    this.toastr.info('Order removed.');
+    this.orderService.deleteOrder(id)
+      .then(() => this.toastr.info("Order removed."))
+      .catch(err => this.toastr.error("Failed to remove order"));
   }
+
+  // RESET FORM
   resetForm() {
     this.orderData = {
       customerName: '',

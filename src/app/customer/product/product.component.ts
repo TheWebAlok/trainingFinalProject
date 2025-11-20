@@ -84,45 +84,98 @@ export class ProductComponent implements OnInit {
       });
   }
 
-  proceedToPayment(product: any) {
-    if (!this.authService.getIsLoggedIn()) {
-      this.toastr.error("Please login first to proceed with payment!");
-      this.router.navigate(['/login']);
-      return;
-    }
+ async proceedToPayment(product: any) {
 
-    const user = {
-      name: sessionStorage.getItem("name") || "Customer",
-      email: sessionStorage.getItem("email") || "customer@example.com",
-      mobile: sessionStorage.getItem("phone") || "9999999999"
-    };
-
-    const options: any = {
-      key: "rzp_test_R7raQKFj1qN71z",
-      amount: product.price * 100,
-      currency: "INR",
-      name: "Maa Computer Press",
-      description: product.name,
-      prefill: {
-        name: user.name,
-        email: user.email,
-        contact: user.mobile
-      },
-      theme: { color: "#3399cc" },
-      handler: (res: any) => {
-        this.toastr.success("Payment Successful");
-        console.log("Payment Done:", res);
-      }
-    };
-
-    const rzp1 = new Razorpay(options);
-
-    rzp1.on("payment.failed", (err: any) => {
-      this.toastr.error("Payment Failed");
-      console.error(err);
-    });
-
-    rzp1.open();
+  // 1️⃣ Login Check
+  if (!this.authService.getIsLoggedIn()) {
+    this.toastr.error("Please login first to proceed with payment!");
+    this.router.navigate(['/login']);
+    return;
   }
+
+  // 2️⃣ User Details
+  const user = {
+    name: sessionStorage.getItem("name") || "Customer",
+    email: sessionStorage.getItem("email") || "customer@example.com",
+    mobile: sessionStorage.getItem("phone") || "9999999999"
+  };
+
+  const amount = product.price;
+
+  // 3️⃣ Razorpay Options
+  const options: any = {
+    key: "rzp_test_R7raQKFj1qN71z",
+    amount: amount * 100,
+    currency: "INR",
+    name: "Maa Computer Press",
+    description: product.name,
+
+    prefill: {
+      name: user.name,
+      email: user.email,
+      contact: user.mobile
+    },
+
+    theme: { color: "#3399cc" },
+
+    // 4️⃣ Payment Success Handler
+    handler: async (res: any) => {
+      this.toastr.success("Payment Successful");
+      console.log("Payment Done:", res);
+
+      // ------------------------
+      //  SAVE ORDER IN FIRESTORE
+      // ------------------------
+      const orderData = {
+        paymentId: res.razorpay_payment_id,
+        date: new Date().toISOString(),
+
+        customer: {
+          name: user.name,
+          email: user.email,
+          mobile: user.mobile,
+          address: this.authService.getAddress()
+        },
+
+        items: [
+          {
+            ...product,
+            quantity: 1
+          }
+        ],
+
+        subtotal: amount,
+        discount: 0,
+        finalAmount: amount
+      };
+
+      try {
+        await this.cartService.saveOrder(orderData);
+
+        // Redirect to order details page
+        this.router.navigate(['/order/details'], {
+          state: { order: orderData }
+        });
+
+      } catch (err) {
+        console.error("Order Save Failed:", err);
+        this.toastr.error("Failed to save order!");
+      }
+    }
+  };
+
+  // 5️⃣ Razorpay Instance
+  const rzp1 = new Razorpay(options);
+
+  // 6️⃣ Payment Failed Handler
+  rzp1.on("payment.failed", (err: any) => {
+    this.toastr.error("Payment Failed");
+    console.error(err);
+  });
+
+  // 7️⃣ Open Payment
+  rzp1.open();
+}
+
 
 }

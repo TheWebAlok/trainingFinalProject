@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Order } from '../../shared/models/order/order.model';
 
@@ -7,15 +7,16 @@ import { Order } from '../../shared/models/order/order.model';
   providedIn: 'root'
 })
 export class OrderService {
+
   constructor(private fs: Firestore) {}
 
-  // Add order (called from user buy)
-  addOrder(order: Order): Promise<void> {
+  // SAVE ORDER IN FIRESTORE
+  addOrder(order: Order): Promise<DocumentReference> {
     const orderRef = collection(this.fs, 'orders');
-    return addDoc(orderRef, order).then(() => {});
+    return addDoc(orderRef, order);  // <-- return actual promise
   }
 
-  // Get all orders (for admin)
+  // FETCH ORDERS
   getOrders(): Observable<Order[]> {
     const orderRef = collection(this.fs, 'orders');
     return collectionData(orderRef, { idField: 'id' }) as Observable<Order[]>;

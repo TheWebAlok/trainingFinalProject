@@ -7,6 +7,7 @@ import { CartService } from '../../services/cart/cart.service';
 import { AuthService } from '../../shared/auth/auth.service';
 import Swal from 'sweetalert2';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { Router, RouterLink } from '@angular/router';
 
 declare var Razorpay: any;
 
@@ -15,7 +16,7 @@ declare var Razorpay: any;
   standalone: true,
   imports: [
     CommonModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
   templateUrl: './muhar.component.html',
   styleUrls: ['./muhar.component.css']
@@ -30,7 +31,8 @@ export class MuharComponent {
     private toastr: ToastrService,
     private cartService: CartService,
     private authService: AuthService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -98,52 +100,96 @@ export class MuharComponent {
   // -----------------------------
   // BUY NOW PAYMENT
   // -----------------------------
-  buyNow(m: Muhar) {
-    if (!this.authService.getIsLoggedIn()) {
-      this.toastr.error("Please login first!");
-      return;
-    }
+  async buyNow(m: Muhar) {
 
-    const user = {
-      name: sessionStorage.getItem("name") || "Customer",
-      email: sessionStorage.getItem("email") || "customer@example.com",
-      phone: sessionStorage.getItem("phone") || "9999999999"
-    };
-
-    const options = {
-      key: "rzp_test_R7raQKFj1qN71z",
-      amount: m.price * 100,
-      currency: "INR",
-      name: "Maa Computer Press",
-      description: m.type,
-      prefill: {
-        name: user.name,
-        email: user.email,
-        contact: user.phone
-      },
-      theme: {
-        color: "#0d6efd"
-      },
-      handler: (res: any) => {
-        Swal.fire({
-          icon: "success",
-          title: "Payment Successful!"
-        });
-        console.log("Payment Success:", res);
-      }
-    };
-
-    const rzp = new Razorpay(options);
-
-    rzp.on("payment.failed", (err: any) => {
-      Swal.fire({
-        icon: "error",
-        title: "Payment Failed"
-      });
-      console.error(err);
-    });
-
-    rzp.open();
+  if (!this.authService.getIsLoggedIn()) {
+    this.toastr.error("Please login first!");
+    return;
   }
+
+  const user = {
+    name: sessionStorage.getItem("name") || "Customer",
+    email: sessionStorage.getItem("email") || "customer@example.com",
+    phone: sessionStorage.getItem("phone") || "9999999999"
+  };
+
+  const amount = m.price;
+
+  const options: any = {
+    key: "rzp_test_R7raQKFj1qN71z",
+    amount: amount * 100,
+    currency: "INR",
+    name: "Maa Computer Press",
+    description: m.type,
+
+    prefill: {
+      name: user.name,
+      email: user.email,
+      contact: user.phone
+    },
+
+    theme: { color: "#0d6efd" },
+
+    handler: async (res: any) => {
+      Swal.fire({
+        icon: "success",
+        title: "Payment Successful!"
+      });
+
+      console.log("Payment Success:", res);
+
+      // -----------------------------
+      //  SAVE ORDER IN FIRESTORE
+      // -----------------------------
+      const orderData = {
+        paymentId: res.razorpay_payment_id,
+        date: new Date().toISOString(),
+
+        customer: {
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          address: this.authService.getAddress()
+        },
+
+        items: [
+          {
+            ...m,
+            quantity: 1
+          }
+        ],
+
+        subtotal: amount,
+        discount: 0,
+        finalAmount: amount
+      };
+
+      try {
+        await this.cartService.saveOrder(orderData);
+
+        this.router.navigate(['/order/details'], {
+          state: { order: orderData }
+        });
+
+      } catch (err) {
+        console.error("Order Save Failed:", err);
+        this.toastr.error("Failed to save order!");
+      }
+    }
+  };
+
+  const rzp = new Razorpay(options);
+
+  rzp.on("payment.failed", (err: any) => {
+    Swal.fire({
+      icon: "error",
+      title: "Payment Failed"
+    });
+    console.error(err);
+  });
+
+  rzp.open();
+}
+
 
 }

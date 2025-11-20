@@ -1,14 +1,14 @@
 export interface Order {
-  id?: string;
-  userId: string;
-  userName: string;
-  userEmail: string;
-  userAddress: string;
-  userMobile: string;
-  itemName: string;
-  itemImage: string;
+  customerName: string;
+  email: string;
+  mobile: string;
+  address: string;
+  productName: string;
+  quantity: number;
   price: number;
-  buyDate: any;
-  deliveryDate: any;
-  status: string; // e.g., 'Pending', 'Delivered'
+  imageUrl?: string;
+  paymentId?: string;
+  totalAmount?: number;
+  status: boolean;
+  createdAt: any;
 }

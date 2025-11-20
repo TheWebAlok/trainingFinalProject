@@ -32,7 +32,7 @@ export class CartComponent implements OnInit {
       this.cartItems = items;
     });
   }
-
+  
   getTotal(item: CartModel): number {
     return item.price * item.quantity;
   }
@@ -204,7 +204,7 @@ export class CartComponent implements OnInit {
           console.log("Payment Done:", res.razorpay_payment_id);
 
           // --------------------------
-          // ⭐ SAVE ORDER IN FIRESTORE
+          //  SAVE ORDER IN FIRESTORE
           // --------------------------
           const orderData = {
             paymentId: res.razorpay_payment_id,
@@ -217,7 +217,7 @@ export class CartComponent implements OnInit {
               address: this.authService.getAddress()
             },
 
-            items: [item],  // 🔥 Single item purchase
+            items: [item],
             subtotal: amount,
             discount: 0,
             finalAmount: amount
