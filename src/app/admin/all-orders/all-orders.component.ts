@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OrdersService } from '../../services/orders/orders.service';
 import { Orders } from '../../shared/models/orders/orders.model';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-all-orders',
@@ -14,40 +15,61 @@ import { ToastrService } from 'ngx-toastr';
 export class AllOrdersComponent implements OnInit {
 
   orders: Orders[] = [];
+  loading = true;
 
   constructor(
-    private ordersService: OrdersService,
+    private orderService: OrdersService,
     private toastr: ToastrService
-  ) { }
+  ) {}
 
-  ngOnInit(){
+  ngOnInit(): void {
     this.getAllOrders();
   }
-  
+
+  // Fetch all orders
   getAllOrders() {
-    this.ordersService.getOrders().subscribe(
-      (res: Orders[]) => {
-        this.orders = res;
-        console.log("Orders Loaded:", this.orders);
-        this.toastr.success("Orders Loaded Successfully");
+    this.loading = true;
+    this.orderService.getOrders().subscribe({
+      next: (data) => {
+        this.orders = data;
+        console.log("Orders Loaded =", data);
+        this.loading = false;
       },
-      (err: any) => {
-        console.error("Error:", err);
+      error: (err) => {
+        console.error("Firestore Error:", err);
         this.toastr.error("Failed to load orders");
+        this.loading = false;
       }
-    );
+    });
   }
-  deleteOrder(orderId?: string) {
+
+  // Cancel/Delete order with confirmation
+  cancelOrder(orderId?: string) {
     if (!orderId) {
       this.toastr.error("Invalid Order ID");
       return;
     }
-    this.ordersService.deleteOrder(orderId).then(() => {
-      this.orders = this.orders.filter(o => o.id !== orderId);
-      this.toastr.success("Order deleted successfully");
-    }).catch(err => {
-      console.error("Delete Error:", err);
-      this.toastr.error("Failed to delete order");
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to cancel this order?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, Cancel it!"
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.orderService.deleteOrder(orderId)
+          .then(() => {
+            this.orders = this.orders.filter(o => o.id !== orderId);
+            Swal.fire("Cancelled!", "Your order has been cancelled.", "success");
+          })
+          .catch(err => {
+            console.error(err);
+            Swal.fire("Error!", "Something went wrong!", "error");
+          });
+      }
     });
   }
 

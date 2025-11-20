@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrdersService } from '../../services/orders/orders.service';
 import { Auth, user } from '@angular/fire/auth';
-import Swal from 'sweetalert2';   // <-- RIGHT PLACE
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-order-details',
@@ -26,17 +26,17 @@ export class OrderDetailsComponent implements OnInit {
     user(this.auth).subscribe(currentUser => {
 
       if (!currentUser) {
-        console.error("❌ User not logged in");
+        console.error(" User not logged in");
         this.loading = false;
         return;
       }
 
       const email = currentUser.email;
-      console.log("🔥 Firebase Email =", email);
+      console.log(" Firebase Email =", email);
 
       this.orderService.getOrdersByEmail(email!).subscribe({
         next: (data) => {
-          console.log("🔥 Orders Loaded =", data);
+          console.log(" Orders Loaded =", data);
           this.orders = data;
           this.loading = false;
         },
@@ -50,7 +50,7 @@ export class OrderDetailsComponent implements OnInit {
 
   }
 
-  // ✅ Cancel Order Function
+  //  Cancel Order Function
   cancelOrder(orderId: string) {
 
     Swal.fire({
