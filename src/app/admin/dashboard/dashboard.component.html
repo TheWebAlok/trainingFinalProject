@@ -1,0 +1,74 @@
+<div class="container-fluid mt-4">
+  <h2 class="mb-4 text-center">Admin Dashboard</h2>
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card shadow border-0">
+        <div class="card-body text-center">
+          <h5 class="card-text text-muted">Total Categories</h5>
+          <p class="card-text display-6 text-primary">{{ categories.length || 0
+            }}</p>
+          <a routerLink="/admin/update/category"
+            class="btn btn-outline-primary btn-sm">Manage Categories</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow border-0">
+        <div class="card-body text-center">
+          <h5 class="card-title">Total Orders</h5>
+          <p class="card-text display-6 text-success">{{ orders.length || 0
+            }}</p>
+          <a routerLink="/admin/allOrders"
+            class="btn btn-outline-success btn-sm">View Orders</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card shadow border-0">
+        <div class="card-body text-center">
+          <h5 class="card-title">Users Registered</h5>
+          <p class="card-text display-6 text-danger">{{ totalUsers }}</p>
+          <a routerLink="/admin/users"
+            class="btn btn-outline-danger btn-sm">View Users</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow border-0">
+        <div class="card-body text-center">
+          <h5 class="card-text text-muted">Total Products</h5>
+          <p class="card-text display-6 text-success">{{ products.length || 0
+            }}</p>
+          <a routerLink="/admin/addProduct"
+            class="btn btn-outline-success btn-sm">Manage Products</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow border-0">
+        <div class="card-body text-center">
+          <h5 class="card-text text-muted">Total Wedding Cards</h5>
+          <p class="card-text display-6 text-info">{{ weddingCards.length || 0
+            }}</p>
+          <a routerLink="/admin/addWeddingCard"
+            class="btn btn-outline-info btn-sm">Manage Wedding Cards</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow border-0">
+        <div class="card-body text-center">
+          <h5 class="card-text text-muted">Total Services</h5>
+          <p class="card-text display-6 text-info">{{ services.length || 0
+            }}</p>
+          <a routerLink="/admin/addServices"
+            class="btn btn-outline-info btn-sm">Manage Services</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

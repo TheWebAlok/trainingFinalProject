@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <div class="card p-4 rounded-3">
+    <h2 class="text-center mb-4 fw-bold">Edit Service</h2>
+
+    <form (ngSubmit)="updateService()" #editForm="ngForm">
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Service Name</label>
+        <input type="text" class="form-control"
+          [(ngModel)]="service.name" name="name" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Price (₹)</label>
+        <input type="number" class="form-control"
+          [(ngModel)]="service.price" name="price" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Description</label>
+        <textarea class="form-control" rows="3"
+          [(ngModel)]="service.description" name="description"></textarea>
+      </div>
+
+      <div class="mb-3 text-center">
+        <label class="form-label fw-semibold">Current Image</label><br>
+
+        @if (service.imageUrl) {
+        <img [src]="service.imageUrl"
+          class="rounded shadow-sm border" width="180">
+        } @else {
+        <p class="text-muted">No image available</p>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Upload New Image</label>
+        <input type="file" class="form-control"
+          (change)="onFileSelected($event)" />
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-success px-4">Update
+          Service</button>
+      </div>
+
+    </form>
+  </div>
+</div>

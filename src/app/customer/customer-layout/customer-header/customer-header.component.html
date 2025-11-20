@@ -1,0 +1,64 @@
+<!-- Navbar start -->
+<div class="container-fluid bg-dark fixed-top">
+  <!-- Topbar -->
+  <div class="container-fluid bg-primary py-1 d-none rounded d-lg-flex justify-content-between">
+    <div class="text-white small">
+      <i class="fas fa-map-marker-alt me-1"></i> 03 Kanchanpur, Aurangabad Bihar
+      <span class="mx-2">|</span>
+      <i class="fas fa-envelope me-1"></i> EmailExample.com
+    </div>
+    <div class="text-white small">
+      <a href="#" class="text-white me-2">Privacy Policy</a>|
+      <a href="#" class="text-white mx-2">Terms of Use</a>|
+      <a href="#" class="text-white ms-2">Sales & Refunds</a>
+    </div>
+  </div>
+  
+  <!-- Main Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a routerLink="/home" class="navbar-brand">Maa Computer Press</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a routerLink="/home" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a routerLink="/a4" class="nav-link">A4 Papers</a></li>
+          <li class="nav-item"><a routerLink="/product" class="nav-link">Product</a></li>
+          <li class="nav-item"><a routerLink="/keyboards" class="nav-link">Keyboard</a></li>
+          <li class="nav-item"><a routerLink="/mouses" class="nav-link">Mouses</a></li>
+          <li class="nav-item"><a routerLink="/muhar" class="nav-link">Muhar</a></li>
+          <li class="nav-item"><a routerLink="/lamination" class="nav-link">Lamination</a></li>
+          <li class="nav-item"><a routerLink="/printers" class="nav-link">Printers</a></li>
+          <li class="nav-item"><a routerLink="/services" class="nav-link">Services</a></li>
+          <li class="nav-item"><a routerLink="/weddingCard" class="nav-link">Wedding Card</a></li>
+          <li class="nav-item"><a routerLink="/cart" class="nav-link">Cart</a></li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Pages</a>
+            <ul class="dropdown-menu">
+              <!-- <li><a routerLink="/orders" class="dropdown-item">Orders</a></li> -->
+              <li><a routerLink="/serviceBook" class="dropdown-item">Services Book</a></li>
+              <li><a routerLink="/paymentGateway" class="dropdown-item">Payment Gateway</a></li>
+              <li><a routerLink="/billings" class="dropdown-item">Billings</a></li>
+              <li><a routerLink="/error" class="dropdown-item">404 Page</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a routerLink="/contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="d-flex">
+          @if(isLoggedIn){
+        <a (click)="logout()" class="btn btn-primary d-none d-lg-block">Logout</a>
+        }
+        @else {
+        <a routerLink="/login" class="btn btn-primary d-none d-lg-block">Login</a>
+        }
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

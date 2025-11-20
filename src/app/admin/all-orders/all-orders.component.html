@@ -1,0 +1,66 @@
+<div class="container-fluid mt-4">
+  <h2 class="text-center mb-4">All Orders</h2>
+
+  @if (orders.length === 0) {
+  <div class="alert alert-info text-center">
+    No orders found!
+  </div>
+  }
+
+  @if (orders.length > 0) {
+  <table class="table table-bordered table-striped shadow-sm">
+    <thead class="table-dark">
+      <tr>
+        <th>S.No</th>
+        <th>Customer Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total Amount</th>
+        <th>Payment ID</th>
+        <th>Image</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (order of orders; track $index) {
+      <tr>
+        <td>{{ $index + 1 }}</td>
+        <td>{{ order.customerName }}</td>
+        <td>{{ order.email }}</td>
+        <td>{{ order.mobile }}</td>
+        <td>{{ order.address }}</td>
+        <td>{{ order.productName }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>₹ {{ order.price }}</td>
+        <td>₹ {{ order.totalAmount }}</td>
+        <td>{{ order.paymentId }}</td>
+        <td>
+          <a [href]="order.imageUrl" target="_blank">
+            @if (order.imageUrl) {
+            <img [src]="order.imageUrl" alt="Product" width="60" height="60"
+              class="rounded shadow-sm">
+            }
+          </a>
+        </td>
+        <td>
+          {{ order.createdAt?.toDate ? (order.createdAt.toDate() | date:'short')
+          : (order.createdAt | date:'short') }}
+        </td>
+        <td>{{ order.status }}</td>
+        <td>
+          <button (click)="deleteOrder(order.id)" class="btn btn-outline-danger">Delete</button>
+
+        </td>
+
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
+</div>

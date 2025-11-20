@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <h3 class="text-center mb-3">All Orders</h3>
+  <table class="table table-bordered table-hover text-center align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>User</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Item</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Buy Date</th>
+        <th>Delivery Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let o of orders; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ o.userName }}</td>
+        <td>{{ o.userEmail }}</td>
+        <td>{{ o.userMobile }}</td>
+        <td>{{ o.userAddress }}</td>
+        <td>{{ o.itemName }}</td>
+        <td><img [src]="o.itemImage" alt="Item" width="60" height="60" class="rounded"></td>
+        <td>₹{{ o.price }}</td>
+        <td>{{ o.buyDate | date:'shortDate' }}</td>
+        <td>{{ o.deliveryDate | date:'shortDate' }}</td>
+        <td><span class="badge bg-info">{{ o.status }}</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

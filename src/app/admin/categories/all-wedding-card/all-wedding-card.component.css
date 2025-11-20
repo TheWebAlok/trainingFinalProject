@@ -1,0 +1,34 @@
+
+/* wedding Card--------------------------- */
+
+.main{
+  margin-top:12%;
+  
+}
+.cardDiv{
+      height: 40%;
+      width: 22%;
+}
+.text-pink {
+  color: #e91e63;
+}
+
+.text-purple {
+  color: #6a1b9a;
+}
+
+.btn-pink {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+}
+
+.btn-pink:hover {
+  background-color: #c2185b;
+}
+
+.wedding-card-img {
+  height: 250px;
+  object-fit: cover;
+  width: 100%;
+}

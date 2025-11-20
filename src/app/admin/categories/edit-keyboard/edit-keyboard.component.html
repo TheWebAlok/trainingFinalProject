@@ -1,0 +1,73 @@
+<div class="container mt-5">
+  <div class="card shadow-lg p-4 rounded-3">
+    <h3 class="text-center text-primary mb-4">Edit Keyboard</h3>
+
+    <form #editForm="ngForm" (ngSubmit)="updateKeyboard(editForm)">
+      <div class="row g-3">
+        <!-- Name -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Keyboard Name</label>
+          <input type="text" class="form-control" name="name"
+                 [(ngModel)]="keyboard.name" required />
+        </div>
+
+        <!-- Brand -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Brand</label>
+          <input type="text" class="form-control" name="brand"
+                 [(ngModel)]="keyboard.brand" required />
+        </div>
+
+        <!-- Type -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Type</label>
+          <select class="form-select" name="type" [(ngModel)]="keyboard.type" required>
+            <option value="wired">Wired</option>
+            <option value="wireless">Wireless</option>
+            <option value="mechanical">Mechanical</option>
+          </select>
+        </div>
+
+        <!-- Price -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Price (₹)</label>
+          <input type="number" class="form-control" name="price"
+                 [(ngModel)]="keyboard.price" required />
+        </div>
+
+        <!-- Stock -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Stock</label>
+          <input type="number" class="form-control" name="stock"
+                 [(ngModel)]="keyboard.stock" required />
+        </div>
+
+        <!-- Description -->
+        <div class="col-12">
+          <label class="form-label fw-bold">Description</label>
+          <textarea class="form-control" name="description"
+                    [(ngModel)]="keyboard.description"
+                    rows="3"></textarea>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="col-12">
+          <label class="form-label fw-bold">Upload New Image (Optional)</label>
+          <input type="file" class="form-control" (change)="uploadFile($event)" />
+          <div class="mt-2 text-center">
+            <img *ngIf="keyboard.imageUrl"
+                 [src]="keyboard.imageUrl"
+                 class="img-thumbnail"
+                 width="150" height="100" />
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="col-12 mt-3">
+          <button type="submit" class="btn btn-success w-100"
+                  [disabled]="editForm.invalid">Update Keyboard</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="container mt-4" *ngIf="!loading">
+  <h2 class="text-center mb-4">Edit Mouse</h2>
+
+  <form (ngSubmit)="updateMouse()" #editForm="ngForm">
+    <div class="row">
+      <!-- Name -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" [(ngModel)]="mouse.name" name="name" class="form-control" required />
+      </div>
+
+      <!-- Brand -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Brand</label>
+        <input type="text" [(ngModel)]="mouse.brand" name="brand" class="form-control" required />
+      </div>
+
+      <!-- Type -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Type</label>
+        <select [(ngModel)]="mouse.type" name="type" class="form-control">
+          <option value="wired">Wired</option>
+          <option value="wireless">Wireless</option>
+        </select>
+      </div>
+
+      <!-- Price -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Price</label>
+        <input type="number" [(ngModel)]="mouse.price" name="price" class="form-control" />
+      </div>
+
+      <!-- Stock -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Stock</label>
+        <input type="number" [(ngModel)]="mouse.stock" name="stock" class="form-control" />
+      </div>
+
+      <!-- Description -->
+      <div class="col-12 mb-3">
+        <label class="form-label">Description</label>
+        <textarea [(ngModel)]="mouse.description" name="description" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Existing Image -->
+      <div class="col-md-6 mb-3 text-center">
+        <label class="form-label d-block">Current Image</label>
+        <img [src]="mouse.imageUrl" alt="Current Mouse Image" class="rounded shadow" width="150" height="150" />
+      </div>
+
+      <!-- Upload New Image -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Change Image</label>
+        <input type="file" (change)="onFileSelected($event)" class="form-control" />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-12 mt-3">
+        <button type="submit" class="btn btn-primary w-100" [disabled]="uploading">
+          {{ uploading ? 'Updating...' : 'Update Mouse' }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

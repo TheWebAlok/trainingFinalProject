@@ -1,0 +1,61 @@
+<div class="container mt-4" *ngIf="!loading">
+  <h3 class="mb-3 text-center">Edit Printer</h3>
+
+  <form #form="ngForm" (ngSubmit)="onUpdate()">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" [(ngModel)]="printer.name" name="name" class="form-control" required />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Brand</label>
+        <input type="text" [(ngModel)]="printer.brand" name="brand" class="form-control" required />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Price</label>
+        <input type="number" [(ngModel)]="printer.price" name="price" class="form-control" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Stock</label>
+        <input type="number" [(ngModel)]="printer.stock" name="stock" class="form-control" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Category</label>
+        <input type="text" [(ngModel)]="printer.categoryName" name="categoryName" class="form-control" readonly />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea [(ngModel)]="printer.description" name="description" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Image</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)" />
+    </div>
+
+    <div class="text-center mb-3">
+      <img
+        *ngIf="previewUrl"
+        [src]="previewUrl"
+        alt="Preview"
+        width="150"
+        class="rounded shadow-sm" />
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success px-4" [disabled]="form.invalid">Update</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="loading" class="text-center mt-5">
+  <p>Loading printer details...</p>
+</div>

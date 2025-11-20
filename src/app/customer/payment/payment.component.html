@@ -1,0 +1,21 @@
+<div class="container d-flex justify-content-center mt-5">
+  <div class="card shadow-lg p-4 rounded-4" style="max-width: 400px; width: 100%;">
+    <h3 class="text-center mb-4 text-primary fw-bold">Payment Gateway</h3>
+
+    <form (ngSubmit)="submit()" #payForm="ngForm">
+      <!-- Amount -->
+      <div class="mb-3">
+        <label for="amount" class="form-label fw-bold">Enter Amount (₹)</label>
+        <input type="number" [(ngModel)]="amount" name="amount" id="amount"
+               class="form-control" placeholder="Enter amount" required>
+      </div>
+
+      <!-- Pay Now Button -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-success btn-lg">
+          Pay Now
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

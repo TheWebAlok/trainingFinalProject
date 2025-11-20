@@ -1,0 +1,138 @@
+
+<h2 class=" ss text-center">Our Services</h2>
+<div id="servicePromoCarousel"
+  class="carousel  slide mb-5 shadow-lg rounded-4 overflow-hidden"
+  data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#servicePromoCarousel"
+      data-bs-slide-to="0" class="active" aria-current="true"
+      aria-label="Slide 1: Free Consultation"></button>
+    <button type="button" data-bs-target="#servicePromoCarousel"
+      data-bs-slide-to="1" aria-label="Slide 2: Annual Plans"></button>
+    <button type="button" data-bs-target="#servicePromoCarousel"
+      data-bs-slide-to="2" aria-label="Slide 3: Customer Support"></button>
+  </div>
+
+  <div class="carousel-inner">
+
+    <div class="carousel-item active" style="background-color: #f0f8ff;">
+      <div class="d-flex align-items-center p-5">
+        <div class="col-md-7">
+          <h2 class="text-primary fw-bold">Free Initial Consultation</h2>
+          <p class="lead">Start with confidence! Book a free, no-obligation
+            session with our experts to discuss your needs.</p>
+          <button class="btn btn-lg btn-primary shadow-sm">
+            Schedule Free Call
+          </button>
+        </div>
+        <div class="col-md-5 text-center">
+          <img src="Bottom-image/ss3.jpg" class="d-block w-100"
+            alt="Image of a business consultation meeting"
+            style="max-height: 250px; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item" style="background-color: #e6f7ff;">
+      <div class="d-flex align-items-center p-5">
+        <div class="col-md-7">
+          <h2 class="text-success fw-bold">Save Big on Annual Service Plans</h2>
+          <p class="lead">Commit and Save! Get 20% off when you switch to our
+            annual subscription for continuous service.</p>
+          <button class="btn btn-lg btn-success shadow-sm">
+            View Plan Details
+          </button>
+        </div>
+        <div class="col-md-5 text-center">
+          <img src="Bottom-image/ss2.jpeg" class="d-block w-100"
+            alt="Image showing savings and growth chart"
+            style="max-height: 250px; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item" style="background-color: #f9f9e6;">
+      <div class="d-flex align-items-center p-5">
+        <div class="col-md-7">
+          <h2 class="text-danger fw-bold">Dedicated 24/7 Customer Support</h2>
+          <p class="lead">We're Here for You! Get instant help and peace of mind
+            with our round-the-clock expert support team.</p>
+          <button class="btn btn-lg btn-danger shadow-sm">
+            Contact Support Now
+          </button>
+        </div>
+        <div class="col-md-5 text-center">
+          <img src="Bottom-image/ss1.jpg" class="d-block w-100"
+            alt="Image of a customer support team working"
+            style="max-height: 250px; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="carousel-control-prev" type="button"
+    data-bs-target="#servicePromoCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button"
+    data-bs-target="#servicePromoCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="container">
+
+  <div class="row">
+    @for (service of servicesList; track service) {
+    @if (service.status === true) {
+
+    <div class="col-12">
+      <div class="card mb-4 shadow-lg border-0 rounded-4 overflow-hidden">
+        <div class="row g-0 align-items-center">
+
+          <!-- IMAGE SECTION -->
+          <div class="col-md-5">
+            <img
+              [src]="service.imageUrl || 'assets/img/default-image.png'"
+              alt="{{ service.name }}"
+              class="img-fluid h-100"
+              style="object-fit: cover; min-height: 350px;" />
+          </div>
+
+          <!-- CONTENT SECTION -->
+          <div class="col-md-7">
+            <div class="p-4">
+
+              <h4 class="fw-bold text-primary">{{ service.name }}</h4>
+              <hr />
+
+              <p><strong>Description:</strong>
+                <span class="text-muted">{{ service.description }}</span>
+              </p>
+
+              <p><strong>Price:</strong>
+                <span class="text-success fw-bold">₹{{ service.price }}</span>
+              </p>
+
+              <div class="mt-4 d-flex">
+                <button
+                  class="btn btn-lg btn-primary flex-fill shadow-sm"
+                  (click)="bookServices(service)">
+                  Book Service
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    }
+    }
+  </div>
+</div>

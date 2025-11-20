@@ -1,0 +1,131 @@
+/* Common Button Style */
+.btn-custom {
+  padding: 8px 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Warning Button */
+.btn-warning {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 193, 7, 0.5);
+}
+
+/* Danger Button */
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #bb2d3b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+/* Info Button */
+.btn-info {
+  background-color: #0dcaf0;
+  color: white;
+}
+
+.btn-info:hover {
+  background-color: #0a95c7;
+  box-shadow: 0 4px 8px rgba(13, 202, 240, 0.4);
+  transform: scale(1.03);
+}
+
+/* Link inside Button */
+.btn-info a {
+  color: white;
+  text-decoration: none;
+}
+
+.btn-info a:hover {
+  text-decoration: underline;
+}
+
+/* Icon Style (optional if you're using icons) */
+.btn-custom i {
+  font-size: 16px;
+}
+
+
+/* serviceService---------------------- */
+
+/* Card Base Style */
+.service-card {
+  width: 25%;
+  background-color: #212529; /* Bootstrap dark bg */
+  transition: transform 0.3s ease;
+  border: 2px solid #f10586;
+  /* box-shadow: 0 0.25rem 0.5rem #f10586; */
+}
+
+/* Hover Effect */
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 1rem 2rem rgba(0, 123, 255, 0.5); /* Blue glow */
+}
+
+/* Image Style */
+.service-img {
+  height: 250px;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 2px solid #007bff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Image Hover Shadow */
+.service-img:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 123, 255, 0.6);
+}
+
+
+/* wedding Card--------------------------- */
+
+.main{
+  margin-top:12%;
+  
+}
+.cardDiv{
+      height: 40%;
+      width: 22%;
+}
+.text-pink {
+  color: #e91e63;
+}
+
+.text-purple {
+  color: #6a1b9a;
+}
+
+.btn-pink {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+}
+
+.btn-pink:hover {
+  background-color: #c2185b;
+}
+
+.wedding-card-img {
+  height: 250px;
+  object-fit: cover;
+  width: 100%;
+}

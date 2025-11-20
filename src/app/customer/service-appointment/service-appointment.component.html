@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Book Service</h2>
+
+  <form #appointmentForm="ngForm" (ngSubmit)="openConfirmModal()" novalidate>
+    <div class="row">
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="appointment.name" name="name" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" [(ngModel)]="appointment.email" name="email" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Phone</label>
+        <input type="tel" class="form-control" [(ngModel)]="appointment.phone" name="phone" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Service Type</label>
+        <select class="form-select" [(ngModel)]="appointment.serviceType" name="serviceType" required>
+          <option value="" disabled selected>Choose...</option>
+          <option>Printer Servicing</option>
+          <option>Monitor Repair</option>
+          <option>Computer Servicing</option>
+          <option>Software Installation</option>
+          <option>Hardware Upgrade</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Date</label>
+        <input type="date" class="form-control" [(ngModel)]="appointment.date" name="date" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Time</label>
+        <input type="time" class="form-control" [(ngModel)]="appointment.time" name="time" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Model Name</label>
+        <input type="text" class="form-control" [(ngModel)]="appointment.modelName" name="modelName">
+      </div>
+
+      <div class="col-12 mb-3">
+        <label class="form-label">Problem Description</label>
+        <textarea class="form-control" rows="3" [(ngModel)]="appointment.notes" name="notes"></textarea>
+      </div>
+
+      <div class="col-12 mb-3">
+        <button type="submit" class="btn btn-primary" [disabled]="!appointmentForm.valid">Book Service</button>
+      </div>
+
+    </div>
+  </form>
+</div>

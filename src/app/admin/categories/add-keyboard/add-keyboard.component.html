@@ -1,0 +1,115 @@
+<div class="container mt-5">
+  <div class="card shadow-lg p-4 rounded-3">
+    <h3 class="text-center text-primary mb-4">Add Keyboard</h3>
+
+    <form #keyboardForm="ngForm" (ngSubmit)="submitKeyboard(keyboardForm)">
+      <div class="row g-3">
+        
+        <!-- Keyboard Name -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Keyboard Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            [(ngModel)]="keyboardObj.name"
+            required
+            placeholder="Enter keyboard name" />
+        </div>
+
+        <!-- Category -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Choose Category</label>
+          <select
+            class="form-select"
+            [(ngModel)]="addKeyboard.categoryId"
+            name="categoryId"
+            required>
+            <option disabled selected value>-- Select Category --</option>
+            @for (c of categories; track c.id) {
+              <option [value]="c.id">{{c.name}}</option>
+            }
+          </select>
+        </div>
+
+        <!-- Brand -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Company Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="brand"
+            [(ngModel)]="keyboardObj.brand"
+            required
+            placeholder="Enter company name" />
+        </div>
+
+        <!-- Type -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Type</label>
+          <select
+            class="form-select"
+            name="type"
+            [(ngModel)]="keyboardObj.type"
+            required>
+            <option disabled selected value>-- Select Type --</option>
+            <option value="wired">Wired</option>
+            <option value="wireless">Wireless</option>
+            <option value="mechanical">Mechanical</option>
+          </select>
+        </div>
+
+        <!-- Price -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Price (₹)</label>
+          <input
+            type="number"
+            class="form-control"
+            name="price"
+            [(ngModel)]="keyboardObj.price"
+            required
+            placeholder="Enter price" />
+        </div>
+
+        <!-- Stock -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Stock</label>
+          <input
+            type="number"
+            class="form-control"
+            name="stock"
+            [(ngModel)]="keyboardObj.stock"
+            required
+            placeholder="Enter stock quantity" />
+        </div>
+
+        <!-- Description -->
+        <div class="col-12">
+          <label class="form-label fw-bold">Description</label>
+          <textarea
+            class="form-control"
+            name="description"
+            [(ngModel)]="keyboardObj.description"
+            rows="3"
+            placeholder="Write about the keyboard..."></textarea>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="col-12">
+          <label class="form-label fw-bold">Upload Image</label>
+          <input type="file" class="form-control" (change)="uploadFile($event)" />
+        </div>
+
+        <!-- Submit -->
+        <div class="col-12">
+          <button
+            type="submit"
+            class="btn btn-success w-100 mt-3"
+            [disabled]="keyboardForm.invalid">
+            Save Keyboard
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="container mt-4">
+  <div class="card w-75 mx-auto">
+    <div class="card-header  text-white">
+      <h4 class="mb-0">Add Wedding Card</h4>
+    </div>
+    <div class="card-body">
+      <form #weddingCardForm="ngForm" (ngSubmit)="submitWeddingCard(weddingCardForm)">
+
+        <div class="row">
+          <!-- Name -->
+          <div class="col-md-6 mb-3">
+            <label for="name">Wedding Card Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              [(ngModel)]="weddingCard.name"
+              placeholder="Enter card name"
+              required>
+            @if (weddingCardForm.submitted && !weddingCard.name) {
+              <small class="text-danger">Name is required.</small>
+            }
+          </div>
+
+          <!-- Category -->
+          <div class="col-md-6 mb-3">
+            <label>Choose Category</label>
+            <select class="form-control" name="categoryId" [(ngModel)]="weddingCard.categoryId" required>
+              <option disabled selected value>-- Select Category --</option>
+              @for (c of categories; track c.id) {
+                <option [value]="c.id">{{c.name}}</option>
+              }
+            </select>
+          </div>
+
+          <!-- Price -->
+          <div class="col-md-6 mb-3">
+            <label for="price">Price (₹)</label>
+            <input
+              type="number"
+              class="form-control"
+              id="price"
+              name="price"
+              [(ngModel)]="weddingCard.price"
+              placeholder="Enter price"
+              min="0"
+              required>
+            @if (weddingCardForm.submitted && weddingCard.price < 0) {
+              <small class="text-danger">Price must be greater than 0.</small>
+            }
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="description">Description</label>
+          <textarea
+            class="form-control"
+            rows="3"
+            id="description"
+            name="description"
+            [(ngModel)]="weddingCard.description"
+            placeholder="Enter description"
+            required></textarea>
+          @if (weddingCardForm.submitted && !weddingCard.description) {
+            <small class="text-danger">Description is required.</small>
+          }
+        </div>
+
+        <!-- Image Upload -->
+        <div class="mb-3">
+          <label for="image">Wedding Card Image</label>
+          <input
+            type="file"
+            class="form-control"
+            (change)="onFileSelected($event)"
+            id="image"
+            accept="image/*"
+            required>
+          @if (weddingCardForm.submitted && !selectedFile) {
+            <small class="text-danger">Please select an image.</small>
+          }
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <button type="submit" class="btn btn-primary w-100">
+            Add Wedding Card
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

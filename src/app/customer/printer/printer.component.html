@@ -1,0 +1,149 @@
+<!-- Global Spinner -->
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<div id="printerCarousel" class="carousel pp slide mb-5 shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#printerCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1: Inkjet Printers"></button>
+        <button type="button" data-bs-target="#printerCarousel" data-bs-slide-to="1" aria-label="Slide 2: Laser Printers"></button>
+        <button type="button" data-bs-target="#printerCarousel" data-bs-slide-to="2" aria-label="Slide 3: All-in-One Deals"></button>
+    </div>
+
+    <div class="carousel-inner">
+
+        <div class="carousel-item active" style="background-color: #f0f8ff;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="text-primary fw-bold">Vibrant Prints: Inkjet Printer Collection</h2>
+                    <p class="lead">Perfect for photos and graphics! Explore our range of high-resolution inkjet printers for home and office.</p>
+                    <button class="btn btn-lg btn-primary shadow-sm" >
+                        Shop Inkjet Printers
+                    </button>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/pp3.jpg" class="d-block w-100" alt="Image of a modern inkjet printer" style="max-height: 250px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item" style="background-color: #e6f7ff;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="text-success fw-bold">Speed & Efficiency: Laser Printer Series</h2>
+                    <p class="lead">High-volume printing made easy. Get crisp, fast, and cost-effective prints with our robust laser printers.</p>
+                    <button class="btn btn-lg btn-success shadow-sm" >
+                        Explore Laser Printers
+                    </button>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/pp2.jpg" class="d-block w-100" alt="Image of a sleek laser printer" style="max-height: 250px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item" style="background-color: #f9f9e6;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="text-danger fw-bold">All-in-One Deals: Print, Scan, Copy!</h2>
+                    <p class="lead">Maximize productivity with versatile multi-function printers. Limited-time offers on top brands!</p>
+                    <button class="btn btn-lg btn-danger shadow-sm" >
+                        View All-in-One Deals
+                    </button>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/pp1.jpg" class="d-block w-100" alt="Image of an all-in-one multi-function printer" style="max-height: 250px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#printerCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#printerCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="container mt-1">
+
+
+
+  <!-- ================= NO DATA ================= -->
+  @if (!loading && printers.length === 0) {
+    <div class="alert alert-warning text-center">
+      No Printers Found.
+    </div>
+  }
+
+  <!-- ================= PRINTER LIST ================= -->
+  @if (!loading && printers.length > 0) {
+
+    @for (p of printers; track p.id) {
+
+      <div class="muhar-card shadow rounded-4 overflow-hidden mb-4">
+
+        <div class="row g-0 align-items-center">
+
+          <!-- Image -->
+          <div class="col-md-5">
+            <img
+              [src]="p.imageUrl || 'assets/images/no-image.png'"
+              class="img-fluid muhar-img"
+              alt="Printer Image"
+              style="height: 350px; width: 400px; margin-left: 20px;">
+          </div>
+
+          <!-- Details -->
+          <div class="col-md-7">
+            <div class="p-4">
+
+              <h4 class="fw-bold text-primary">{{ p.name }}</h4>
+              <hr>
+
+              <p><strong>Brand:</strong> <span class="text-muted">{{ p.brand }}</span></p>
+              <p><strong>Description:</strong> <span class="text-muted">{{ p.description }}</span></p>
+              <p><strong>Category:</strong> <span class="text-muted">{{ p.categoryName }}</span></p>
+              <p><strong>Price:</strong> <span class="text-success fw-bold">₹{{ p.price }}</span></p>
+
+              <p>
+                <strong>Stock:</strong>
+                <span class="badge"
+                      [class.bg-success]="p.stock > 0"
+                      [class.bg-danger]="p.stock == 0">
+                  {{ p.stock > 0 ? 'Available' : 'Out of Stock' }}
+                </span>
+              </p>
+
+              <!-- Buttons -->
+              <div class="mt-3 d-flex gap-3">
+                <button class="btn btn-primary flex-fill muhar-btn" (click)="buyNow(p)">
+                  Buy Now
+                </button>
+
+                <button class="btn btn-outline-success flex-fill muhar-btn" (click)="addToCart(p)">
+                  Add to Cart
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    }
+
+  }
+
+</div>

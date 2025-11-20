@@ -1,0 +1,154 @@
+
+<!-- Global Spinner -->
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<div class="container mt-5">
+  <h3 class="text-center text-primary fw-bold mb-4">All Lamination Services</h3>
+
+  <div id="laminationCarousel" class="carousel slide mb-5 shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#laminationCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#laminationCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#laminationCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      
+      <div class="carousel-item active" style="background-color: #f8f9fa;">
+        <div class="d-flex align-items-center p-4">
+          <div class="col-md-7">
+            <h2 class="text-primary fw-bold">Standard Document Protection (A4)</h2>
+            <p class="lead">Protect your vital documents, certificates, and photos from spills and tears with our reliable standard lamination.</p>
+            <!-- <button class="btn btn-primary btn-lg" (click)="filterLamination('Standard')">View Standard Service</button> -->
+          </div>
+          <div class="col-md-5 text-center">
+            <img src="Bottom-image/l1.jpg" class="d-block w-100" alt="Standard Document Lamination" style="max-height: 200px; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item" style="background-color: #e9ecef;">
+        <div class="d-flex align-items-center p-4">
+          <div class="col-md-7">
+            <h2 class="text-success fw-bold">Quick ID Card Lamination</h2>
+            <p class="lead">Get your ID cards, driving licenses, and small photos sealed instantly. Highly durable and travel-friendly.</p>
+            <!-- <button class="btn btn-success btn-lg" (click)="filterLamination('ID Card')">Check ID Card Pricing</button> -->
+          </div>
+          <div class="col-md-5 text-center">
+            <img src="Bottom-image/l2.jpg" class="d-block w-100" alt="ID Card Lamination Service" style="max-height: 200px; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+      
+      <div class="carousel-item" style="background-color: #dee2e6;">
+        <div class="d-flex align-items-center p-4">
+          <div class="col-md-7">
+            <h2 class="text-danger fw-bold"> Choose Your Finish & Save!</h2>
+            <p class="lead">We offer both Glossy (high shine) and Matte (anti-glare) finishes. Get 10% off when laminating 5+ items!</p>
+            <!-- <button class="btn btn-danger btn-lg" (click)="viewSpecialOffer()">View Special Offer</button> -->
+          </div>
+          <div class="col-md-5 text-center">
+            <img src="Bottom-image/l3.jpg" class="d-block w-100" alt="Lamination Finish Options and Discount" style="max-height: 200px; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#laminationCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#laminationCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+<div class="container mt-5">
+  <!-- Loading -->
+  @if (loading) {
+  <div class="text-center text-secondary">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p>Loading services...</p>
+  </div>
+  }
+
+  <!-- No Data -->
+  @if (!loading && laminations.length === 0) {
+  <div class="alert alert-warning text-center">
+    No lamination services found.
+  </div>
+  }
+
+  <!-- List -->
+  @if (laminations.length > 0 && !loading) {
+        
+  @for (item of laminations; track item.id) {
+
+  <div class="card mb-4 shadow border-0 rounded-4 overflow-hidden">
+    <div class="row g-0 align-items-center">
+
+      <!-- Left Image -->
+      <div class="col-md-5">
+        <img
+          [src]="item.image || 'assets/images/no-image.png'"
+          alt="Lamination Image"
+          class="img-fluid w-100"
+          style="object-fit: cover; height: 240px;">
+      </div>
+
+      <!-- Right Details -->
+      <div class="col-md-7">
+        <div class="p-3">
+
+          <h4 class="fw-bold text-primary mb-2">
+            {{ item.serviceName }}
+          </h4>
+          <hr class="my-2">
+
+          <p class="mb-1">
+            <strong>Category:</strong>
+            <span class="text-muted">{{ item.categoryName || 'N/A' }}</span>
+          </p>
+
+          <p class="mb-1">
+            <strong>Description:</strong>
+            <span class="text-muted">{{ item.description ||
+              'No description available' }}</span>
+          </p>
+
+          <p class="mb-2">
+            <strong>Price:</strong>
+            <span class="text-success fw-bold">₹{{ item.price }}</span>
+          </p>
+
+          <!-- Buttons -->
+          <div class="mt-3 d-flex gap-3">
+            <button
+              class="btn btn-primary flex-fill shadow-sm"
+              (click)="buyNow(item)">
+              Buy Now
+            </button>
+
+            <button
+              class="btn btn-outline-danger flex-fill shadow-sm"
+              (click)="addToCartHandler(item)">
+              Add to Cart
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  }
+
+  }
+
+</div>

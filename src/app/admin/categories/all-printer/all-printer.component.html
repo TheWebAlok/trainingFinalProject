@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <h3 class="mb-3 text-center">All Printers</h3>
+
+  <table class="table table-bordered table-hover text-center align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Image</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let p of printers; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.brand }}</td>
+        <td>₹{{ p.price }}</td>
+        <td>{{ p.stock }}</td>
+        <td>{{ p.description }}</td>
+        <td>{{ p.categoryName }}</td>
+        <td>
+          <img
+            [src]="p.imageUrl"
+            alt="{{ p.name }}"
+            width="60"
+            height="60"
+            class="rounded shadow-sm" />
+        </td>
+        <td>
+          <button class="btn btn-sm btn-warning"
+            [routerLink]="['/admin/edit-printer', p.id]">
+            Edit
+          </button>
+          
+          <button class="btn btn-sm btn-danger" (click)="deletePrinter(p.id!)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

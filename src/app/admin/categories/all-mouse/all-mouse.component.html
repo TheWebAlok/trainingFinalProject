@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">All Mice</h2>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p>Loading...</p>
+  </div>
+
+  <div *ngIf="!loading && mice.length === 0" class="alert alert-info text-center">
+    No mice found.
+  </div>
+
+  <div *ngIf="mice.length > 0" class="table-responsive">
+    <table class="table table-bordered table-striped align-middle text-center">
+      <thead class="table-primary">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Brand</th>
+          <th>Type</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of mice">
+          <td><img [src]="m.imageUrl" alt="Mouse Image" width="70" height="70" class="rounded" /></td>
+          <td>{{ m.name }}</td>
+          <td>{{ m.brand }}</td>
+          <td>{{ m.type }}</td>
+          <td>₹{{ m.price }}</td>
+          <td>{{ m.stock }}</td>
+          <td>{{ m.categoryName }}</td>
+          <td>{{ m.description }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2" (click)="editMouse(m.id)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteMouse(m.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

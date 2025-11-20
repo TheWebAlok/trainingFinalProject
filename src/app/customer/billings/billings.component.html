@@ -1,0 +1,96 @@
+
+
+<div class="container py-5">
+
+  <div class="row heading text-center">
+    <div class="col-md-6">
+      <h2 class="mb-3">Saved Billings</h2>
+    </div>
+    <!-- <div class="col-md-6">
+      <h2 class>Billing Form</h2>
+    </div> -->
+  </div>
+  <div class="row">
+
+    <div class="col-md-6">
+
+      <form (ngSubmit)="addBilling()" class=" border-3" #billingForm="ngForm">
+
+        <div class="mb-3">
+          <label>Name</label>
+          <input type="text" class="form-control" name="name"
+            [(ngModel)]="newBilling.name" required />
+        </div>
+
+        <div class="mb-3">
+          <label>Mobile</label>
+          <input type="tel" class="form-control" name="mobile"
+            [(ngModel)]="newBilling.mobile" required />
+        </div>
+
+        <div class="mb-3">
+          <label>Address</label>
+          <textarea class="form-control" name="address"
+            [(ngModel)]="newBilling.address" required></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label>Full Location</label>
+          <input type="text" class="form-control" name="location"
+            [(ngModel)]="newBilling.location" required />
+        </div>
+
+        <div class="mb-3">
+          <label>Pincode</label>
+          <input type="text" class="form-control" name="pincode"
+            [(ngModel)]="newBilling.pincode" required />
+        </div>
+
+        <button type="submit" class="btn btn-outline-warning">Save
+          Billing</button>
+      </form>
+
+      <hr class="my-4" />
+
+    </div>
+    <!-- <div class="col-md-6 mt-3">
+      <table class="table table-bordered">
+
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>Location</th>
+            <th>Pincode</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (bill of billings; track bill.id) {
+          <tr>
+            <td>{{ bill.name }}</td>
+            <td>{{ bill.mobile }}</td>
+            <td>{{ bill.address }}</td>
+            <td>{{ bill.location }}</td>
+            <td>{{ bill.pincode }}</td>
+            <td width="200">
+              <button (click)="deleteBilling(bill.id)"
+                class="btn btn-outline-danger btn-sm ">
+                Delete
+              </button>
+
+              <button (click)="proceedToPayment(bill)"
+                class="btn btn-outline-success btn-sm ch">
+              Choose This
+              </button>
+            </td>
+
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div> -->
+  </div>
+
+</div>

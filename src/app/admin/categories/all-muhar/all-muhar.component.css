@@ -1,0 +1,9 @@
+table img {
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.badge {
+  font-size: 0.9rem;
+  padding: 5px 10px;
+}

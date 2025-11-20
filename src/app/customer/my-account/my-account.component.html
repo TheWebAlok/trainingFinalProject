@@ -1,0 +1,141 @@
+<div class="container-fluid py-4">
+  @if(userData) {
+  <div class="row g-0">
+
+    <!-- Sidebar -->
+    <div class="col-md-3 col-lg-2 bg-light border-end">
+      <div class="list-group rounded-0 shadow-sm">
+
+        <div class="p-3 border-bottom text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+            class="rounded-circle mb-2" width="70">
+          <h6 class="mb-0">{{ userData.name || 'Hello User' }}</h6>
+          <small class="text-muted">{{ userData.email }}</small>
+        </div>
+
+        <button class="list-group-item list-group-item-action py-3"
+          [class.active]="activeTab === 'profile'"
+          (click)="activeTab = 'profile'">
+          👤 Profile
+        </button>
+        <button class="list-group-item list-group-item-action py-3"
+          [class.active]="activeTab === 'settings'"
+          (click)="activeTab = 'settings'">
+          ⚙️ Settings
+        </button>
+        <button class="list-group-item list-group-item-action py-3"
+          [class.active]="activeTab === 'orders'"
+          (click)="activeTab = 'orders'">
+          📦 My Orders
+        </button>
+        <button class="list-group-item list-group-item-action py-3"
+          [class.active]="activeTab === 'payments'"
+          (click)="activeTab = 'payments'">
+          💳 Payments
+        </button>
+        <button class="list-group-item list-group-item-action text-danger py-3"
+          (click)="logout()">
+          🚪 Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Content -->
+    <div class="col-md-9 col-lg-10">
+      <div class="card shadow-sm p-4 border-0 h-100">
+
+        <h4 class="mb-4 border-bottom pb-3">My Account</h4>
+
+        <!-- Profile -->
+        @if(activeTab === 'profile') {
+        <div>
+          <h5 class="mb-3">Personal Information</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Name:</b> {{ userData.name }}</li>
+            <li class="list-group-item"><b>Email:</b> {{ userData.email }}</li>
+            <li class="list-group-item"><b>Phone:</b> {{ userData.phone }}</li>
+            <li class="list-group-item"><b>Address:</b> {{ userData.address }}</li>
+          </ul>
+        </div>
+        }
+
+        <!-- Orders -->
+        @if(activeTab === 'orders') {
+        <div>
+          <h5 class="mb-3">My Orders</h5>
+          @if(orders.length > 0) {
+          <div class="table-responsive">
+            <table class="table table-striped align-middle">
+              <thead class="table-primary">
+                <tr>
+                  <th>#</th>
+                  <th>Product</th>
+                  <th>Image</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>Total</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for(order of orders; track order; let i = $index) {
+                <tr>
+                  <td>{{ i+1 }}</td>
+                  <td>{{ order.productName }}</td>
+                  <td><img [src]="order.imageUrl" width="60" height="60" class="rounded"></td>
+                  <td>{{ order.quantity }}</td>
+                  <td>₹{{ order.price }}</td>
+                  <td><b>₹{{ order.price * order.quantity }}</b></td>
+                  <td>{{ order.createdAt | date:'mediumDate' }}</td>
+                  <td>
+                    <span class="badge"
+                      [ngClass]="{
+                        'bg-success': order.status === 'Delivered',
+                        'bg-warning': order.status === 'On the way',
+                        'bg-danger': order.status === 'Cancelled'
+                      }">{{ order.status }}</span>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-danger"
+                      (click)="deleteOrder(order.id)">Delete</button>
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          } @else {
+          <p class="text-muted">No orders found.</p>
+          }
+        </div>
+        }
+
+        <!-- Payments -->
+        @if(activeTab === 'payments') {
+        <div>
+          <h5 class="mb-3">Payments</h5>
+          <p><b>Gift Cards:</b> ₹0</p>
+          <p><b>Saved UPI:</b> Not Added</p>
+          <p><b>Saved Cards:</b> Not Added</p>
+        </div>
+        }
+
+      </div>
+    </div>
+  </div>
+  } @else {
+  <div class="text-center py-5">
+    <div class="card p-4 shadow-sm">
+      <h4 class="mb-3">My Account</h4>
+      <p class="text-muted">You are not logged in.</p>
+      <button class="btn btn-primary w-25" (click)="goToLogin()">Login</button>
+      <p class="mt-3">
+        Don’t have an account?
+        <a (click)="goToRegister()" class="text-decoration-none">Register here</a>
+      </p>
+    </div>
+  </div>
+  }
+</div>

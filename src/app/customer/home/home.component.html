@@ -1,0 +1,513 @@
+
+
+<div class="container-fluid  hero-header">
+  <div class="container py-1">
+    <div class="row g-5 align-items-center">
+      <div class="col-md-12 col-lg-7">
+        <h4 class="mb-3 text-secondary animated slideInDown">100% Branded
+          Product</h4>
+        <h1 class="mb-5 display-3 text-primary fs-1 animated slideInDown">One
+          Step for Printing, Digital Services & Retail Solutions</h1>
+
+      </div>
+      <div class="col-md-12 col-lg-5">
+        <div id="carouselId" class="carousel slide position-relative"
+          data-bs-ride="carousel">
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active rounded">
+              <img src="img/image/homePrinter4.jpg"
+                class="img-fluid w-100 h-100 bg-secondary rounded"
+                alt="First slide">
+              <a href="/printers"
+                class="btn px-4 py-2 text-white rounded animated slideInRight">Flex
+                Printer</a>
+            </div>
+            <div class="carousel-item rounded">
+              <img src="img/image/homeCarousel1.jpg"
+                class="img-fluid w-100 h-100 rounded" alt="Second slide">
+              <a href="/services"
+                class="btn px-4 py-2 text-white rounded">Servicing</a>
+            </div>
+            <div class="carousel-item rounded">
+              <img src="img/image/homeCarousel2.jpg"
+                class="img-fluid w-100 h-100 rounded" alt="Second slide">
+              <a href="/weddingCard"
+                class="btn px-4 py-2 text-white rounded">Wedding
+                Card</a>
+            </div>
+            <div class="carousel-item rounded">
+              <img src="img/image/homeCarousel3.jpg"
+                class="img-fluid w-100 h-100 rounded" alt="Second slide">
+              <a href="/printers" class="btn px-4 py-2 text-white rounded">Epson
+                Mate</a>
+            </div>
+            <div class="carousel-item rounded">
+              <img src="img/image/homeCarousel4.jpg"
+                class="img-fluid w-100 h-100 rounded" alt="Second slide">
+              <a href="/printers" class="btn px-4 py-2 text-white rounded">Paper
+                Jet</a>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button"
+            data-bs-target="#carouselId" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button"
+            data-bs-target="#carouselId" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container my-4">
+  <div class="row">
+    <div class="col-md-4 mt-3">
+      <div class="row g-3">
+        <div class="col-6">
+          <div class="card">
+            <img src="img/image/mouse1.jpg" class="card-img-top"
+              alt="Lipton Tea">
+            <div class="card-body">
+              <p class="card-text">Lipton Tea Powder</p>
+              <small class="text-success">Bestsellers</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card">
+            <img src="img/image/mouse1.jpg" class="card-img-top"
+              alt="Milk Drink Mixes">
+            <div class="card-body">
+              <p class="card-text">Milk Drink Mixes</p>
+              <small class="text-success">Special offer</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card">
+            <img src="img/image/mouse1.jpg" class="card-img-top"
+              alt="Google Mobiles">
+            <div class="card-body">
+              <p class="card-text">Google Mobiles</p>
+              <small class="text-muted">In Focus Now</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card">
+            <img src="img/image/mouse1.jpg" class="card-img-top"
+              alt="Canon DSLR">
+            <div class="card-body">
+              <p class="card-text">Canon DSLR & Mirrorless</p>
+              <small class="text-muted">Best Picks</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="banner">
+        <img src="img/image/mouse1.jpg" class="img-fluid"
+          alt="Top Selling Smartphones">
+        <div class="banner-text">
+          <h2>Top Selling Smartphones</h2>
+          <p>Latest Technology, Best Brands</p>
+          <a href="#" class="btn btn-primary">Explore Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<div class="container-fluid animate__animated animate__slideInUp"><div class="row mt-5">
+
+    <div class="col-md-4 mt-3">
+      @if (allA4.length > 0) {
+      <a routerLink="/a4" style="text-decoration: none; color: inherit;">
+        <div class="home-box mb-4 p-0">
+
+          <img [src]="allA4[0].imageUrl"
+            alt="A4 Image"
+            class="home-img">
+
+          <div class="p-3">
+            <h5 class="home-title">{{ allA4[0].name }}</h5>
+            <p class="home-desc">{{ allA4[0].description }}</p>
+          </div>
+
+        </div>
+      </a>
+      }
+    </div>
+
+    <div class="col-md-4 mt-3">
+      @if (printers.length > 0) {
+
+      <a href="/printers">
+        <div class="home-box mb-4 p-0">
+
+          <img
+            [src]="printers[0].imageUrl || 'assets/images/no-image.png'"
+            class="home-img"
+            alt="Printer Image">
+
+          <div class="p-3">
+            <h5 class="home-title">{{ printers[0].name || 'Printer' }}</h5>
+            <p class="home-desc">{{ printers[0].description }}</p>
+          </div>
+        </div>
+      </a>
+      }
+    </div>
+    <div class="col-md-4 mt-3">
+      @if (keyboards.length > 0) {
+      <a href="/keyboards">
+        <div class="home-box mb-4 p-0">
+          <img
+            [src]="keyboards[0].imageUrl || 'assets/images/no-image.png'"
+            class="home-img"
+            alt="Printer Image">
+          <div class="p-3">
+            <h5 class="home-title">{{ keyboards[0].name || 'Keyboard' }}</h5>
+            <p class>{{ keyboards[0].type || 'Keyboard' }}</p>
+          </div>
+        </div>
+      </a>
+      }
+    </div>
+    <div class="col-md-4 mt-3">
+      @if (mice.length > 0 && !loading) {
+      <a href="/mouses" style="text-decoration: none; color: inherit;">
+        <div class="home-box mb-4 p-0">
+          <img
+            [src]="mice[0].imageUrl || 'assets/images/no-image.png'"
+            class="home-img"
+            alt="Mouse Image">
+          <div class="p-2">
+            <h5 class="home-title">{{ mice[0].name || 'Mouse' }}</h5>
+            <p class="small-desc">{{ mice[0].type }}</p>
+          </div>
+        </div>
+      </a>
+      }
+    </div>
+    <div class="col-md-4 mt-3">
+      @if (muhars.length > 0 && !loading) {
+
+      <a href="/muhar" style="text-decoration: none; color: inherit;">
+        <div class="home-box mb-4 p-0">
+
+          <img
+            [src]="muhars[0].imageUrl || 'assets/images/no-image.png'"
+            class="home-img"
+            alt="Muhar Image">
+
+          <div class="p-3">
+            <h5 class="home-title">{{ muhars[0].type || 'Muhar' }}</h5>
+            <p class="home-desc">{{ muhars[0].categoryName }}</p>
+          </div>
+
+        </div>
+      </a>
+
+      }
+    </div>
+    <div class="col-md-4 mt-3">
+      @if (laminations.length > 0 && !loading) {
+
+      <a href="/laminations" style="text-decoration: none; color: inherit;">
+        <div class="home-box mb-4 p-0">
+
+          <img
+            [src]="laminations[0].image || 'assets/images/no-image.png'"
+            class="home-img"
+            alt="Lamination Image">
+
+          <div class="p-3">
+            <h5 class="home-title">{{ laminations[0].serviceName || 'Lamination'
+              }}</h5>
+            <p class="home-desc">{{ laminations[0].categoryName || 'N/A' }}</p>
+          </div>
+
+        </div>
+      </a>
+
+      }
+    </div>
+    <div class="col-md-4 mt-3">
+      @if (servicesList.length > 0 && !loading) {
+
+      <a href="/services" style="text-decoration: none; color: inherit;">
+        <div class="home-box mb-4 p-0">
+
+          <img
+            [src]="servicesList[0].imageUrl || 'assets/img/default-image.png'"
+            class="home-img"
+            alt="{{ servicesList[0].name || 'Service' }}">
+
+          <div class="p-3">
+            <h5 class="home-title">{{ servicesList[0].name || 'Service' }}</h5>
+            <p class="home-desc">{{ servicesList[0].description ||
+              'No description available' }}</p>
+          </div>
+
+        </div>
+      </a>
+
+      }
+    </div>
+    <div class="col-md-4 mt-3">
+      @if (weddingCardsList.length > 0) {
+
+      <a href="/wedding-cards" style="text-decoration: none; color: inherit;">
+        <div class="home-box mb-4 p-0">
+
+          <img
+            [src]="weddingCardsList[0].imageUrl || 'assets/images/no-image.png'"
+            class="home-img"
+            alt="{{ weddingCardsList[0].name || 'Wedding Card' }}">
+
+          <div class="p-3">
+            <h5 class="home-title">{{ weddingCardsList[0].name || 'Wedding Card'
+              }}</h5>
+            <p class="home-desc">{{ weddingCardsList[0].description ||
+              'No description available' }}</p>
+          </div>
+
+        </div>
+      </a>
+
+      }
+    </div>
+
+  </div>
+</div>
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-4 mt-3  box-container">
+      <div class="bg-danger box">hello</div>
+      <div class="bg-primary box">hello</div>
+      <div class="bg-secondary box">hello</div>
+      <div class="bg-warning box">hello</div>
+    </div>
+    <div class="col-md-4 mt-3 box-container">
+      <div class="bg-danger box">hello</div>
+      <div class="bg-primary box">hello</div>
+      <div class="bg-secondary box">hello</div>
+      <div class="bg-warning box">hello</div>
+    </div>
+    <div class="col-md-4 mt-3 box-container">
+      <div class="bg-danger box">hello</div>
+      <div class="bg-primary box">hello</div>
+      <div class="bg-secondary box">hello</div>
+      <div class="bg-warning box">hello</div>
+    </div>
+
+  </div>
+</div> -->
+<div id="newHeroCarousel" class="carousel slide carousel-fade mb-5 mt-3 shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#newHeroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#newHeroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#newHeroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#newHeroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#newHeroCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+  </div>
+  <div class="carousel-inner">
+
+    <div class="carousel-item active">
+      <img src="Bottom-image/K-1.jpg" class="d-block w-100 object-fit-cover" alt="Featured Product 1" style="min-height: 400px;">
+      <div class="carousel-caption d-none d-md-block text-start" style="background-color: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px; max-width: 50%;">
+        <h3 class="fw-bold text-white">Discover Our Latest Collection!</h3>
+        <p class="text-white-50">Explore cutting-edge technology and innovative designs for your workspace.</p>
+        <button class="btn btn-primary btn-lg mt-2">Shop Now</button>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="Bottom-image/L4.jpg" class="d-block w-100 object-fit-cover" alt="Special Offer" style="min-height: 400px;">
+      <div class="carousel-caption d-none d-md-block text-center" style="background-color: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px; max-width: 70%; margin: 0 auto;">
+        <h3 class="fw-bold text-warning">Limited Time Offer: Up to 30% Off!</h3>
+        <p class="text-white-50">Don't miss out on incredible savings across all categories. Grab your deals today!</p>
+        <button class="btn btn-warning btn-lg mt-2">View Deals</button>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="Bottom-image/M-4.jpg" class="d-block w-100 object-fit-cover" alt="New Arrival" style="min-height: 400px;">
+      <div class="carousel-caption d-none d-md-block text-end" style="background-color: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px; max-width: 50%; margin-left: auto;">
+        <h3 class="fw-bold text-info">Fast & Reliable Delivery</h3>
+        <p class="text-white-50">Get your products delivered right to your doorstep, quickly and safely.</p>
+        <button class="btn btn-info btn-lg mt-2">Learn More</button>
+      </div>
+    </div>
+ <div class="carousel-item">
+      <img src="Bottom-image/A2-1.jpg" class="d-block w-100 object-fit-cover" alt="New Arrival" style="min-height: 400px;">
+      <div class="carousel-caption d-none d-md-block text-end" style="background-color: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px; max-width: 50%; margin-left: auto;">
+        <h3 class="fw-bold text-info">Fast & Reliable Delivery</h3>
+        <p class="text-white-50">Get your products delivered right to your doorstep, quickly and safely.</p>
+        <button class="btn btn-info btn-lg mt-2">Learn More</button>
+      </div>
+    </div> <div class="carousel-item">
+      <img src="Bottom-image/P-1.jpg" class="d-block w-100 object-fit-cover" alt="New Arrival" style="min-height: 400px;">
+      <div class="carousel-caption d-none d-md-block text-end" style="background-color: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px; max-width: 50%; margin-left: auto;">
+        <h3 class="fw-bold text-info">Fast & Reliable Delivery</h3>
+        <p class="text-white-50">Get your products delivered right to your doorstep, quickly and safely.</p>
+        <button class="btn btn-info btn-lg mt-2">Learn More</button>
+      </div>
+    </div> <div class="carousel-item">
+      <img src="Bottom-image/W-1.jpg" class="d-block w-100 object-fit-cover" alt="New Arrival" style="min-height: 400px;">
+      <div class="carousel-caption d-none d-md-block text-end" style="background-color: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px; max-width: 50%; margin-left: auto;">
+        <h3 class="fw-bold text-info">Fast & Reliable Delivery</h3>
+        <p class="text-white-50">Get your products delivered right to your doorstep, quickly and safely.</p>
+        <button class="btn btn-info btn-lg mt-2">Learn More</button>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#newHeroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#newHeroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div class="container-fluid featurs ">
+  <div class="container py-5">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="featurs-item text-center rounded bg-light p-4">
+          <div
+            class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+            <i class="fas fa-car-side fa-3x text-white"></i>
+          </div>
+          <div class="featurs-content text-center">
+            <h5>Free Shipping</h5>
+            <p class="mb-0">Free on order over ₹300</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="featurs-item text-center rounded bg-light p-4">
+          <div
+            class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+            <i class="fas fa-user-shield fa-3x text-white"></i>
+          </div>
+          <div class="featurs-content text-center">
+            <h5>Security Payment</h5>
+            <p class="mb-0">100% security payment</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="featurs-item text-center rounded bg-light p-4">
+          <div
+            class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+            <i class="fas fa-exchange-alt fa-3x text-white"></i>
+          </div>
+          <div class="featurs-content text-center">
+            <h5>30 Day Return</h5>
+            <p class="mb-0">30 day money guarantee</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="featurs-item text-center rounded bg-light p-4">
+          <div
+            class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+            <i class="fa fa-phone-alt fa-3x text-white"></i>
+          </div>
+          <div class="featurs-content text-center">
+            <h5>24/7 Support</h5>
+            <p class="mb-0">Support every time fast</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid service">
+  <div class="container py-1">
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <a href="/product">
+          <div
+            class="service-item bg-secondary rounded border border-secondary">
+            <img src="img/image/printercart1.jpg"
+              class="img-fluid rounded-top w-100" alt>
+            <div class="px-4 rounded-bottom">
+              <div class="service-content bg-primary text-center p-4 rounded">
+                <h5 class="text-white">New Product</h5>
+                <h3 class="mb-0">20% OFF</h3>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="/keyboards">
+          <div class="service-item bg-dark rounded border border-dark">
+            <img src="img/image/Keyboard1.jpg"
+              class="img-fluid rounded-top w-100" alt>
+            <div class="px-4 rounded-bottom">
+              <div class="service-content bg-light text-center p-4 rounded">
+                <h5 class="text-primary">Heavy Keyboard</h5>
+                <h3 class="mb-0">Free delivery</h3>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="/printers">
+          <div class="service-item bg-primary rounded border border-primary">
+            <img src="img/image/limination.jpg"
+              class="img-fluid rounded-top w-100" alt>
+            <div class="px-4 rounded-bottom">
+              <div class="service-content bg-secondary text-center p-4 rounded">
+                <h5 class="text-white">Exotic Machine</h5>
+                <h3 class="mb-0">Discount 30₹</h3>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="carouselExampleAutoplaying" class="carousel slide"
+  data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="Bottom-image/bottom-1.png" class="c-home " style=" height: 200; "
+        alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="Bottom-image/bottom-2.png" class="c-home " style="height: 200; "
+        alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="Bottom-image/bottom-3.png" class="c-home " style=" height: 200; "
+        alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button"
+    data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button"
+    data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

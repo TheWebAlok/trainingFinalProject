@@ -1,0 +1,34 @@
+<!-- Product Section -->
+<div class="container-fluid pb-5" id="product">
+  <h2 class="text-center fw-semibold border-bottom border-top">Our Products</h2>
+  <div class="row  g-4">
+    @for (product of products; track product.id) {
+    <div class="col-md-3 ">
+      <div class="card product-card animate__animated animate__fadeInUp"
+        style="height: 350px;">
+        <img [src]="product.imageUrl || 'assets/images/no-image.png'"
+          class="card-img-top mt-3 "
+          alt="Product Image" style="height: 30%;">
+
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-bold">{{ product.name }}</h5>
+          <p>{{ product.description }}</p>
+          <div class="mt-auto">
+            <p class="fw-bold fs-5 text-primary">₹{{ product.price }}</p>
+          </div>
+        </div>
+        
+        <div
+          class="card-footer bg-white d-flex justify-content-between">
+
+          <button class="btn btn-warning btn-custom"
+            [routerLink]="['/admin/edit/product',product.id]">Edit</button>
+          <button class="btn btn-danger btn-custom"
+            (click)="deleteProduct(product.id)">Delete</button>
+        </div>
+
+      </div>
+    </div>
+    }
+  </div>
+</div>

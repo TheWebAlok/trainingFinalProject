@@ -1,0 +1,62 @@
+<div class="container mt-5 py-4">
+
+  <h2 class="text-center fw-bold text-primary mb-4">All Orders</h2>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-center my-4">
+    <div class="spinner-border text-primary"></div>
+    <p>Loading orders...</p>
+  </div>
+
+  <!-- No Data -->
+  <div *ngIf="!loading && orders.length === 0" class="alert alert-warning text-center">
+    No Orders Found!
+  </div>
+
+  <!-- Show Orders -->
+  <div *ngFor="let order of orders" class="card shadow-sm mb-4 p-3">
+    
+    <h5 class="fw-bold">Order ID: {{ order.id }}</h5>
+
+    <hr>
+
+    <h6 class="fw-bold">Customer Details</h6>
+    <p><b>Name:</b> {{ order.customer?.name }}</p>
+    <p><b>Email:</b> {{ order.customer?.email }}</p>
+    <p><b>Phone:</b> {{ order.customer?.phone }}</p>
+    <p><b>Address:</b> {{ order.customer?.address }}</p>
+    <p><b>Date:</b> {{ order.customer?.date | date:'medium' }}</p>
+
+    <hr>
+
+    <h6 class="fw-bold">Order Summary</h6>
+    <p><b>Discount:</b> ₹{{ order.discount }}</p>
+    <p><b>Final Amount:</b> ₹{{ order.finalAmount }}</p>
+
+    <hr>
+
+    <h6 class="fw-bold">Items</h6>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items">
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>₹{{ item.price }}</td>
+        </tr>
+      </tbody>
+
+    </table>
+    <button class="btn btn-danger mt-3" (click)="cancelOrder(order.id)">
+      Cancel Order
+    </button>
+  </div>
+
+</div>

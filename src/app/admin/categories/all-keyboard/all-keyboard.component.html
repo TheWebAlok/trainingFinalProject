@@ -1,0 +1,46 @@
+<div class="container mt-3">
+  <h3 class="text-center mb-4 text-primary">All Keyboards</h3>
+
+  @if (keyboards.length === 0) {
+  <div class="alert alert-warning text-center">
+    No keyboards found.
+  </div>
+  }
+
+  <div class="row g-3">
+    @for (item of keyboards; track item.id) {
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="card p-2 shadow-sm h-100">
+
+        <!-- Image -->
+        <img [src]="item.imageUrl || 'assets/images/no-image.png'"
+          alt="Keyboard Image"
+          class="img-fluid mb-2"
+          style="max-height: 150px; width: 100%; object-fit: cover; border-radius: 8px;">
+
+        <!-- Details -->
+        <h6 class="mb-1 fw-bold">{{ item.name }}</h6>
+        <p class="mb-1"><strong>Brand:</strong> {{ item.brand }}</p>
+        <p class="mb-1"><strong>Type:</strong> {{ item.type }}</p>
+        <p class="mb-1"><strong>Price:</strong> ₹{{ item.price }}</p>
+        <p class="mb-1">
+          <strong>Stock:</strong>
+          {{ item.stock > 0 ? item.stock : 'Out of Stock' }}
+        </p>
+        <p class="mb-1"><strong>Category:</strong> {{ item.categoryName }}</p>
+
+        <!-- Actions -->
+        <div class="d-flex justify-content-between mt-2">
+          <a [routerLink]="['/admin/keyboards/edit', item.id]"
+            class="btn btn-warning btn-sm">Edit</a>
+
+          <button class="btn btn-danger btn-sm" (click)="onDelete(item.id!)">
+            Delete
+          </button>
+        </div>
+
+      </div>
+    </div>
+    }
+  </div>
+</div>

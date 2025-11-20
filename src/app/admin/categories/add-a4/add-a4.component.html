@@ -1,0 +1,60 @@
+<div class="container mt-3">
+  <h2 class="mb-3">Add A4 Paper</h2>
+
+  <form (ngSubmit)="addA4(a4Form)" #a4Form="ngForm">
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" [(ngModel)]="a4.name" name="name" class="form-control" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Choose Category</label>
+        <select class="form-control" [(ngModel)]="a4.categoryId" name="categoryId" required>
+          <option disabled selected value>Choose Category</option>
+          @for (c of categories; track c.id) {
+            <option [value]="c.id">{{ c.name }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label class="form-label">GSM</label>
+        <input type="number" [(ngModel)]="a4.gsm" name="gsm" class="form-control" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">description</label>
+        <input type="text" [(ngModel)]="a4.description" name="description" class="form-control" required>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Price</label>
+        <input type="number" [(ngModel)]="a4.price" name="price" class="form-control" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Pack Size (sheets)</label>
+        <input type="number" [(ngModel)]="a4.packSize" name="packSize" class="form-control" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Stock</label>
+        <input type="number" [(ngModel)]="a4.stock" name="stock" class="form-control" required>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Upload Image</label>
+      <input type="file" (change)="onFileSelected($event)" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2" [disabled]="uploading || a4Form.invalid">
+      {{ uploading ? 'Uploading...' : 'Add A4 Paper' }}
+    </button>
+  </form>
+</div>

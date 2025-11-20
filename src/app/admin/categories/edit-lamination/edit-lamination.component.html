@@ -1,0 +1,43 @@
+<div class="container mt-4" *ngIf="!loading; else loadingTpl">
+  <h3 class="text-center text-primary mb-3">Edit Lamination Service</h3>
+
+  <form #editForm="ngForm" (ngSubmit)="updateLamination(editForm)" class="card p-4 shadow-sm">
+    <div class="mb-3">
+      <label class="form-label">Service Name</label>
+      <input type="text" class="form-control" [(ngModel)]="lamination.serviceName" name="serviceName" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Category Name</label>
+      <input type="text" class="form-control" [(ngModel)]="lamination.categoryName" name="categoryName">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Price (₹)</label>
+      <input type="number" class="form-control" [(ngModel)]="lamination.price" name="price" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" [(ngModel)]="lamination.description" name="description" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Image</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)">
+      <img *ngIf="lamination.image" [src]="lamination.image" alt="Preview" class="img-fluid mt-2 rounded" style="max-height: 150px;">
+    </div>
+
+    <div class="text-end">
+      <button class="btn btn-primary" type="submit">Update</button>
+      <button class="btn btn-secondary ms-2" type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="text-center text-secondary mt-5">
+    <div class="spinner-border text-primary"></div>
+    <p>Loading lamination details...</p>
+  </div>
+</ng-template>

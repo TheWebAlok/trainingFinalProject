@@ -1,0 +1,189 @@
+<div class="top-header"><a class="navbar-brand fw-bold fs-1"
+    routerLink="/admin/dashboard">
+    Admin Panel
+  </a>
+  <a class="mt-3 btn  me-5"
+    (click)="logout()">Logout</a>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-2">
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+    data-bs-target="#adminNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse d-flex flex-wrap" id="adminNavbar">
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+      <!-- Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link btn btn-outline-info me-2"
+          routerLink="/admin/dashboard">Dashboard</a>
+      </li>
+      <!-- Orders -->
+      <li class="nav-item">
+        <a class="nav-link btn btn-outline-info me-2"
+          routerLink="/admin/allOrders">Orders</a>
+      </li>
+      <!-- A4 -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info me-2" href="#"
+          id="a4Dropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          A4
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark"
+          aria-labelledby="a4Dropdown">
+          <li><a class="dropdown-item text-info" routerLink="/admin/a4">Add A4
+              Paper</a></li>
+          <li><a class="dropdown-item text-info" routerLink="/admin/all/A4">View
+              A4 Paper</a></li>
+        </ul>
+      </li>
+
+      <!-- Categories -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info me-2" href="#"
+          id="categoriesDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Categories
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark"
+          aria-labelledby="categoriesDropdown">
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/add/category">Add Category</a></li>
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/manage-category">View All Category</a></li>
+        </ul>
+      </li>
+      
+      <!-- Keyboard -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info me-2" href="#"
+          id="keyboardDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Keyboard
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark"
+          aria-labelledby="keyboardDropdown">
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/keyboard">Add Keyboard</a></li>
+          <li><a class="dropdown-item text-info"
+              routerLink="all/Keyboard">View Keyboard</a></li>
+        </ul>
+      </li>
+
+      <!-- Lamination -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info me-2" href="#"
+          id="laminationDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Lamination
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark"
+          aria-labelledby="laminationDropdown">
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/lamination">Add Lamination</a></li>
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/all/Lamination">View All Lamination</a></li>
+        </ul>
+      </li>
+
+      <!-- Mouse -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info me-2" href="#"
+          id="mouseDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Mouse
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark"
+          aria-labelledby="mouseDropdown">
+          <li><a class="dropdown-item text-info" routerLink="/admin/mouse">Add
+              Mouse</a></li>
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/all/mouse">View All Mouse</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info me-2" href="#"
+          id="productDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Printer
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark"
+          aria-labelledby="productDropdown">
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/printer">Add Printers</a></li>
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/all/printers">View All Printer</a></li>
+        </ul>
+      </li>
+      <!-- Product -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info me-2" href="#"
+          id="productDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Product
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark"
+          aria-labelledby="productDropdown">
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/addProduct">Add Product</a></li>
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/viewProduct">View All Product</a></li>
+        </ul>
+      </li>
+
+      <!-- Stamp -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info me-2" href="#"
+          id="stampDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Stamp
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark"
+          aria-labelledby="stampDropdown">
+          <li><a class="dropdown-item text-info" routerLink="/admin/stamp">Add
+              Stamp</a></li>
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/all/muhar">View All Stamp</a></li>
+        </ul>
+      </li>
+
+      <!-- Services -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info me-2" href="#"
+          id="servicesDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Services
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark"
+          aria-labelledby="servicesDropdown">
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/addServices">Add Services</a></li>
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/viewServices">View All Services</a></li>
+        </ul>
+      </li>
+
+      <!-- Wedding Card -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info me-2" href="#"
+          id="weddingDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Wedding Card
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark"
+          aria-labelledby="weddingDropdown">
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/addWeddingCard">Add Wedding Card</a></li>
+          <li><a class="dropdown-item text-info"
+              routerLink="/admin/viewWeddingCard">View All Wedding Card</a></li>
+        </ul>
+      </li>
+
+      <!-- Logout -->
+
+    </ul>
+  </div>
+</nav>

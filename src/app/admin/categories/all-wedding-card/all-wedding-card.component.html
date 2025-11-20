@@ -1,0 +1,36 @@
+<div class="row px-3">
+  @if (weddingCardsList.length > 0) {
+    <h2 class="mb-3 text-pink fw-bold border-bottom mt-5">
+      Wedding Cards Collection
+    </h2>
+
+    @for (card of weddingCardsList; track card.id) {
+      <div
+        class="wedding-card bg-light text-dark border rounded box-shadow-lg p-2 m-2 col-md-3 cardDiv">
+
+        <a [href]="card.imageUrl" target="_blank">
+          <img
+            [src]="card.imageUrl"
+            alt="{{card.name}}"
+            class="wedding-card-img img-fluid rounded mb-3"
+            style="width:95%; margin-left: 2%; height: 55%;" />
+        </a>
+
+        <div>
+          <h4 class="text-purple fw-bold">{{ card.name }}</h4>
+          <p class="text-muted">{{ card.description }}</p>
+          <p class="fw-bold text-pink">Price: ₹{{ card.price }}</p>
+        </div>
+
+        <div class="mt-1 d-flex justify-content-between">
+          <button class="btn btn-outline-primary me-2"
+            (click)="editWeddingCard(card.id)">Edit</button>
+          <button class="btn btn-danger"
+            (click)="deleteWeddingCard(card.id)">Delete</button>
+        </div>
+      </div>
+    }
+  } @else {
+    <p class="text-muted">No wedding cards available.</p>
+  }
+</div>

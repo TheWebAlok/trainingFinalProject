@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <h3 class="text-center text-primary mb-4">All Lamination Services</h3>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="text-center text-secondary">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p>Loading services...</p>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && laminations.length === 0" class="alert alert-warning text-center">
+    No lamination services found.
+  </div>
+
+  <!-- Lamination List -->
+  <div class="row g-3" *ngIf="laminations.length > 0 && !loading">
+    <div class="col-12 col-sm-6 col-md-3" *ngFor="let item of laminations">
+      <div class="card shadow-sm h-100 p-2">
+        <img
+          [src]="item.image || 'assets/images/no-image.png'"
+          alt="Lamination Image"
+          class="img-fluid rounded mb-2"
+          style="height: 150px; object-fit: cover;"
+        />
+        <h6 class="fw-bold mb-1">{{ item.serviceName }}</h6>
+        <p class="mb-1"><strong>Category:</strong> {{ item.categoryName || 'N/A' }}</p>
+        <p class="mb-1"><strong>Price:</strong> ₹{{ item.price }}</p>
+        <p class="mb-1"><strong>Description:</strong> {{ item.description || 'No description available' }}</p>
+
+        <div class="d-flex justify-content-between mt-2">
+          <a [routerLink]="['/admin/edit-lamination', item.id]" class="btn btn-warning btn-sm">Edit</a>
+          <button class="btn btn-danger btn-sm" (click)="onDelete(item.id!)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h2 class="text-center fw-bold mb-4">Manage Categories</h2>
+
+  <div class="row">
+    @for (category of categories; track category.id) {
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+
+        @if (category.imageUrl) {
+        <a [href]="category.imageUrl" target="_blank">
+          <img [src]="category.imageUrl"
+            class="card-img-top"
+            alt="Category Image"
+            style="height: 200px; object-fit: cover;" />
+        </a>
+        } @else {
+        <a href="assets/images/no-image.png">
+          <img src="assets/images/no-image.png"
+            class="card-img-top"
+            alt="No Image"
+            style="height: 200px; object-fit: cover;" />
+        </a>
+        }
+
+        <div class="card-body">
+          <h5 class="card-title fw-bold">{{ category.name }}</h5>
+          <p class="card-text">{{ category.description }}</p>
+          <p><strong>Company:</strong> {{ category.company }}</p>
+          <p><strong>Price:</strong> ₹{{ category.price }}</p>
+          <p><strong>Warranty:</strong> {{ category.warranty }} months</p>
+        </div>
+
+        <div class="card-footer d-flex justify-content-between">
+          <a [routerLink]="['/admin/edit-category', category.id]"
+            class="btn btn-warning btn-sm">Edit</a>
+          <button class="btn btn-danger btn-sm"
+            (click)="deleteCategory(category.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

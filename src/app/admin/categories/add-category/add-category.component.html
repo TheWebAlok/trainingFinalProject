@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div class="card shadow-lg p-4 rounded-3">
+    <h2 class="text-center text-primary mb-4">Add Category</h2>
+
+    <form #categoryForm="ngForm" (ngSubmit)="submitCategory(categoryForm)">
+      <div class="row g-3">
+        
+        <!-- Category Name -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Category Name</label>
+          <input type="text" class="form-control" name="name"
+            [(ngModel)]="category.name" required placeholder="Enter category name">
+        </div>
+
+        <!-- Company -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Company</label>
+          <input type="text" class="form-control" name="company"
+            [(ngModel)]="category.company" required placeholder="Enter company name">
+        </div>
+
+        <!-- Price -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Price (₹)</label>
+          <input type="number" class="form-control" name="price"
+            [(ngModel)]="category.price" required placeholder="Enter price">
+        </div>
+
+        <!-- Warranty -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Warranty (Months)</label>
+          <input type="number" class="form-control" name="warranty"
+            [(ngModel)]="category.warranty" required placeholder="Warranty in months">
+        </div>
+
+        <!-- Description -->
+        <div class="col-12">
+          <label class="form-label fw-bold">Description</label>
+          <textarea class="form-control" rows="3" name="description"
+            [(ngModel)]="category.description" required
+            placeholder="Write about the category..."></textarea>
+        </div>
+
+        <!-- Image -->
+        <div class="col-12">
+          <label class="form-label fw-bold">Image</label>
+          <input type="file" class="form-control"
+            (change)="onFileSelected($event)">
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-12">
+          <button class="btn btn-success w-100 mt-3" type="submit">
+            Add Category
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container mt-3">
+  <h3>Edit A4 Paper</h3>
+
+  <form #editForm="ngForm" (ngSubmit)="onUpdate()">
+
+    <!-- Name -->
+    <div class="mb-2">
+      <label>Name</label>
+      <input type="text" class="form-control"
+             [(ngModel)]="a4Data.name" name="name" required />
+    </div>
+
+    <!-- Price -->
+    <div class="mb-2">
+      <label>Price</label>
+      <input type="number" class="form-control"
+             [(ngModel)]="a4Data.price" name="price" required />
+    </div>
+
+    <!-- GSM -->
+    <div class="mb-2">
+      <label>GSM</label>
+      <input type="number" class="form-control"
+             [(ngModel)]="a4Data.gsm" name="gsm" required />
+    </div>
+
+    <!-- Description -->
+    <div class="mb-2">
+      <label>Description</label>
+      <textarea class="form-control" rows="3"
+                [(ngModel)]="a4Data.description" name="description"></textarea>
+    </div>
+
+    <!-- Image Preview -->
+    @if (a4Data.imageUrl) {
+      <div class="mb-2">
+        <label>Current Image</label><br>
+        <img [src]="a4Data.imageUrl" alt="A4 Paper" width="120" class="img-thumbnail">
+      </div>
+    }
+
+    <!-- Upload New Image -->
+    <div class="mb-2">
+      <label>Upload New Image</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)" />
+    </div>
+
+    <!-- Loading / Button -->
+    <div class="mb-3">
+      @if (loading) {
+        <button class="btn btn-secondary" disabled>
+          Updating...
+        </button>
+      } @else {
+        <button type="submit" class="btn btn-primary">
+          Update
+        </button>
+      }
+    </div>
+
+  </form>
+</div>

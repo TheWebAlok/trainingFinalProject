@@ -1,0 +1,19 @@
+.table {
+  font-size: 14px;
+}
+ul {
+  padding-left: 16px;
+}
+.selected-row {
+  background-color: #e6f3ff;
+  font-weight: bold;
+}
+
+
+.btn{
+      margin-left: 1rem !important;
+}
+
+.container{
+      margin-top: 8%;
+}

@@ -1,0 +1,126 @@
+<h2 class="ww text-pink text-center fw-bold border-bottom">
+    Wedding Cards Collection
+  </h2>
+
+<div id="weddingCarousel" class="carousel slide mb-5 shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#weddingCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1: Luxury Collection"></button>
+        <button type="button" data-bs-target="#weddingCarousel" data-bs-slide-to="1" aria-label="Slide 2: E-Vites"></button>
+        <button type="button" data-bs-target="#weddingCarousel" data-bs-slide-to="2" aria-label="Slide 3: Seasonal Discount"></button>
+    </div>
+
+    <div class="carousel-inner">
+
+        <div class="carousel-item active" style="background-color: #fff0f5;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="text-dark fw-bold" style="color: #c2006d;">Exclusive Luxury Wedding Cards</h2>
+                    <p class="lead">Impress your guests! Hand-finished designs with gold foil and velvet texture. Perfect for a grand celebration.</p>
+                    <button class="btn btn-lg shadow-sm" style="background-color: #c2006d; color: white;" >
+                        View Luxury Designs
+                    </button>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/ww1.jpg" class="d-block w-100" alt="Image of an elegant luxury wedding card with gold foil" style="max-height: 350px; border-radius: 15px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item" style="background-color: #f6f6e6;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="text-success fw-bold">Eco-Friendly Digital E-Invites</h2>
+                    <p class="lead">Go green and save money! Modern, animated E-invitations for seamless sharing via WhatsApp and email.</p>
+                    <button class="btn btn-lg btn-success shadow-sm" >
+                        Explore Digital Cards
+                    </button>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/ww2.jpg" class="d-block w-100" alt="Image of an electronic wedding invitation on a smartphone screen" style="max-height: 350px; border-radius: 15px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item" style="background-color: #fde8e8;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="fw-bold" style="color: #dc3545;">🔥 Limited Time Offer: 20% Off All Orders!</h2>
+                    <p class="lead">Book now for the upcoming wedding season! Get the best price on custom printing and design services.</p>
+                    <button class="btn btn-lg btn-danger shadow-sm" >
+                        Claim Discount Now
+                    </button>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/ww3.jpg" class="d-block w-100" alt="Image showing a 20% discount tag on wedding cards" style="max-height: 350px; border-radius: 15px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#weddingCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#weddingCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<div class="container mt-5">
+
+  @if (weddingCardsList.length > 0) {
+    @for (card of weddingCardsList; track card.id) {
+    <div class="card mb-4 shadow-lg border-0 rounded-4 overflow-hidden">
+      <div class="row g-0 align-items-center">
+
+        <!-- IMAGE SECTION -->
+        <div class="col-md-5">
+          <a [href]="card.imageUrl" target="_blank">
+            <img
+              [src]="card.imageUrl"
+              alt="{{card.name}}"
+              class="img-fluid h-100"
+              style="object-fit: cover; min-height: 350px; margin: 20px; border-radius: 15px;"
+            />
+          </a>
+        </div>
+
+        <!-- CONTENT SECTION -->
+        <div class="col-md-7">
+          <div class="p-4">
+
+            <h4 class="fw-bold text-primary">{{ card.name }}</h4>
+            <hr />
+
+            <p><strong>Description:</strong>
+              <span class="text-muted">{{ card.description }}</span>
+            </p>
+
+            <p><strong>Price:</strong>
+              <span class="text-success fw-bold">₹{{ card.price }}</span>
+            </p>
+
+            <div class="mt-4 d-flex gap-3">
+              <button
+                class="btn btn-lg btn-primary flex-fill shadow-sm"
+                (click)="orderNow(card)"
+              >
+                Order Now
+              </button>
+
+              <!-- future use -->
+              <!-- <button class="btn btn-lg btn-outline-danger flex-fill shadow-sm"
+                      (click)="addToCart(card)">
+                Add to Cart
+              </button> -->
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    }
+  }
+</div>

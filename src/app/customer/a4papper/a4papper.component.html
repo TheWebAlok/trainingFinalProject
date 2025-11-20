@@ -1,0 +1,126 @@
+<!-- Global Spinner -->
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+
+<div id="a4PaperCarousel" class="carousel slide mb-5 shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#a4PaperCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1: 75 GSM"></button>
+        <button type="button" data-bs-target="#a4PaperCarousel" data-bs-slide-to="1" aria-label="Slide 2: 100 GSM"></button>
+        <button type="button" data-bs-target="#a4PaperCarousel" data-bs-slide-to="2" aria-label="Slide 3: Bulk"></button>
+    </div>
+    <div class="carousel-inner">
+        
+        <div class="carousel-item active" style="background-color: #f8f9fa;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="text-primary fw-bold">Daily Deals: 75 GSM Paper</h2>
+                    <p class="lead">Reliable and Budget-Friendly. Get crisp, jam-free results for your everyday office printing needs.</p>
+                    <!-- <button class="btn btn-lg btn-primary shadow-sm" (click)="filterPaper('75 GSM')">
+                        Shop 75 GSM Now
+                    </button> -->
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/a41.jpg" class="d-block w-100" alt="Stack of 75 GSM A4 Paper" style="max-height: 250px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item" style="background-color: #e9ecef;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="text-success fw-bold">Premium Quality: 100 GSM</h2>
+                    <p class="lead">Impress Clients! Thicker, brighter paper for high-impact presentations and vibrant color reports.</p>
+                    <!-- <button class="btn btn-lg btn-success shadow-sm" (click)="filterPaper('100 GSM')">
+                        Explore 100 GSM
+                    </button> -->
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/a42.jpg" class="d-block w-100" alt="Premium 100 GSM A4 Paper" style="max-height: 250px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+        
+        <div class="carousel-item" style="background-color: #dee2e6;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="text-danger fw-bold"> Massive Savings: Bulk Purchase</h2>
+                    <p class="lead">Never Run Out! Order our 10-ream boxes for the lowest price per sheet. Ideal for businesses.</p>
+                    <!-- <button class="btn btn-lg btn-danger shadow-sm" (click)="viewBulkOffers()">
+                        View Bulk Deals
+                    </button> -->
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/a43.jpg" class="d-block w-100" alt="A4 Paper Boxes for Bulk Offer" style="max-height: 250px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#a4PaperCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#a4PaperCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<div class="container mt-5">
+  @for (item of allA4; track item.id) {
+  <div class="card mb-4 shadow-lg border-0 rounded-4 overflow-hidden">
+    <div class="row g-0 align-items-center">
+
+      <div class="col-md-5">
+        <img [src]="item.imageUrl" alt="A4 Image"
+          class="img-fluid h-100"
+          style="object-fit: cover; min-height: 350px;">
+      </div>
+
+      <div class="col-md-7">
+        <div class="p-4">
+          <h4 class="fw-bold text-primary">{{ item.name }}</h4>
+          <hr>
+
+          <p><strong>Description:</strong> <span class="text-muted">{{
+              item.description }}</span></p>
+          <p><strong>Price:</strong> <span class="text-success fw-bold">₹{{
+              item.price }}</span></p>
+          <p>
+            <strong>Stock:</strong>
+            <span
+              class="{{ item.stock > 0 ? 'text-success fw-bold' : 'text-danger fw-bold' }}">
+              {{ item.stock > 0 ? item.stock : 'Out of Stock' }}
+            </span>
+          </p>
+          <p><strong>GSM:</strong> <span class="text-muted">{{ item.gsm
+              }}</span></p>
+          <p><strong>Pack Size:</strong> <span class="text-muted">{{
+              item.packSize }}</span></p>
+
+          <div class="mt-4 d-flex gap-3">
+            <button class="btn btn-lg btn-primary flex-fill shadow-sm"
+              (click)="buyNow(item)">
+              Buy Now
+            </button>
+
+            <button class="btn btn-lg btn-outline-danger flex-fill shadow-sm"
+              (click)="addToCartHandler(item)">
+              Add to Cart
+            </button>
+            
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  }
+</div>

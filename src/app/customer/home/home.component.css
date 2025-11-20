@@ -1,0 +1,135 @@
+.fixed-image {
+  width: 100%;
+  margin-top: 1%;
+  height: 200px; /* or adjust as needed */
+  object-fit: cover;
+  border-top-left-radius: 0.5rem; /* for rounded-top effect */
+  border-top-right-radius: 0.5rem;
+}
+.button1{
+      width:9rem;
+      height: 2.5rem;
+      margin-left: 2%;
+      font-size: 0.7rem;
+}
+
+.boxshodow {
+  background-color: #fff;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.boxshodow:hover {
+  background-color: #f9f9f9; /* light background on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.imageClass{
+      height: 200px;
+      width: 150px;
+}
+
+.c-home{
+      height: 350px;
+      width: 1500px;
+      margin-left: 10px;
+}
+
+
+.banner {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.banner-text {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  color: #000;
+}
+
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: 1px solid rgb(26, 3, 3) !important;
+  /* background: #000; */
+  padding: 1%;
+
+}
+
+.box {
+  flex: 0 0 48%;
+  margin-top: 2%;
+  height: 250px;
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: 2px solid black;
+}
+
+/* backend all  */
+.home-box {
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.12);
+    transition: .3s ease;
+    height: 100%;
+  }
+
+  .home-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+  }
+
+  .home-img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .home-title {
+    font-weight: 700;
+    color: #0d6efd;
+    font-size: 18px;
+  }
+
+  .home-desc {
+    color: #6c6c6c;
+    font-size: 14px;
+  }
+
+  .badge-custom {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 20px;
+  }
+
+  .small-box {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    transition: .3s ease;
+  }
+  .small-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  }
+  .small-img {
+    height: 160px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .small-title {
+    font-weight: 700;
+    font-size: 16px;
+    color: #0d6efd;
+  }
+  .small-desc {
+    font-size: 13px;
+    color: #6c6c6c;
+  }
+  

@@ -1,0 +1,68 @@
+<div class="container mt-4">
+  <div class="card shadow p-4">
+    <h3 class="text-center text-success mb-4">Add New Muhar</h3>
+
+    <form #muharForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="row g-3">
+        
+        <!-- Type -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Type</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="muhar.type" name="type"
+                 placeholder="Rubber Stamp / Self Ink Stamp" required />
+        </div>
+
+        <!-- Text -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Text</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="muhar.text" name="text"
+                 placeholder="Enter stamp text" required />
+        </div>
+
+        <!-- Price -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Price (₹)</label>
+          <input type="number" class="form-control"
+                 [(ngModel)]="muhar.price" name="price"
+                 placeholder="Enter price" required />
+        </div>
+
+        <!-- Category -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Category</label>
+          <select class="form-select"
+                  [(ngModel)]="muhar.categoryId" name="categoryId"
+                  (change)="onCategoryChange($event)" required>
+            <option value="" disabled selected>-- Select Category --</option>
+            <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
+          </select>
+        </div>
+
+        <!-- Image -->
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Image</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" />
+        </div>
+
+        <!-- Preview -->
+        <div class="col-md-6" *ngIf="imagePreview">
+          <label class="form-label fw-bold">Preview</label><br />
+          <img [src]="imagePreview" class="img-thumbnail" style="max-height:150px;" />
+        </div>
+
+        
+
+        <!-- Submit -->
+        <div class="col-12 mt-3">
+          <button type="submit" class="btn btn-success w-100"
+                  [disabled]="muharForm.invalid">
+            Add Muhar
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

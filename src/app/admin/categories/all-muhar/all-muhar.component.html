@@ -1,0 +1,56 @@
+<div class="container mt-4">
+  <div class="card shadow-lg p-4 rounded-3">
+    <h2 class="text-center text-success mb-4">All Muhars</h2>
+
+    <div *ngIf="loading" class="text-center text-secondary">Loading...</div>
+
+    <table *ngIf="!loading && muhars.length"
+      class="table table-bordered table-hover text-center align-middle">
+      <thead class="table-success">
+        <tr>
+          <th>#</th>
+          <th>Image</th>
+          <th>Type</th>
+          <th>Text</th>
+          <th>Price (₹)</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of muhars; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <img [src]="m.imageUrl" alt="Image" class="img-thumbnail" width="70"
+              height="70" />
+          </td>
+          <td>{{ m.type }}</td>
+          <td>{{ m.text }}</td>
+          <td>{{ m.price }}</td>
+          <td>{{ m.categoryName }}</td>
+          <td>
+            <span class="badge" [class.bg-success]="m.status"
+              [class.bg-danger]="!m.status">
+              {{ m.status ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-warning btn-sm me-2"
+              [routerLink]="['/admin/edit-muhar', m.id]">
+              <i class="bi bi-pencil-square"></i> Edit
+            </button>
+            
+            <button class="btn btn-danger btn-sm" (click)="deleteMuhar(m.id)">
+              <i class="bi bi-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!loading && !muhars.length" class="text-center text-muted">
+      No Muhars found.
+    </div>
+  </div>
+</div>

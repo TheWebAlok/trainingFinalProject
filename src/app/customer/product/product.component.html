@@ -1,0 +1,125 @@
+  <h2 class="text-center ">Our Products</h2>
+<div id="productCarousel" class="carousel slide shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1: Laser Toner"></button>
+        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1" aria-label="Slide 2: Ergonomic Mouse"></button>
+        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2" aria-label="Slide 3: Premium Pens"></button>
+    </div>
+
+    <div class="carousel-inner">
+
+        <div class="carousel-item active" style="background-color: #f0f8ff;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="text-primary fw-bold">Big Savings: High-Yield Laser Toner</h2>
+                    <p class="lead">Save 30% Today! Get sharp text and reliable performance for all your high-volume printing.</p>
+                    <button class="btn btn-lg btn-primary shadow-sm">
+                        Shop Toner Cartridges
+                    </button>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/toner.jpg" class="d-block w-100" alt="High-Yield Laser Toner Cartridges" style="max-height: 250px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item" style="background-color: #e6f7ff;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="text-success fw-bold">Comfort Upgrade: Ergonomic Mouse</h2>
+                    <p class="lead">Work Pain-Free! Vertical design for natural hand position and all-day comfort. Special offer inside.</p>
+                    <button class="btn btn-lg btn-success shadow-sm">
+                        View Ergonomic Gear
+                    </button>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/mouse.jpg" class="d-block w-100" alt="Ergonomic Vertical Mouse" style="max-height: 250px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item" style="background-color: #f9f9e6;">
+            <div class="d-flex align-items-center p-5">
+                <div class="col-md-7">
+                    <h2 class="text-danger fw-bold">Signature Style: Premium Pen Sets</h2>
+                    <p class="lead">The Perfect Gift! Smooth writing and sophisticated design for a lasting professional impression.</p>
+                    <button class="btn btn-lg btn-danger shadow-sm">
+                        Explore Pen Collection
+                    </button>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="Bottom-image/pro.jpg" class="d-block w-100" alt="Set of Premium Fountain Pens" style="max-height: 250px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Our Products</h2>
+
+  @for (product of products; track product.id) {
+  <div class="card mb-4 shadow-lg border-0 rounded-4 overflow-hidden">
+    <div class="row g-0 align-items-center">
+
+      <!-- IMAGE SECTION -->
+      <div class="col-md-5">
+        <img
+          [src]="product.imageUrl"
+          alt="Product Image"
+          class="img-fluid "
+          style="object-fit: cover; min-height: 350px; margin: 20px; height: 300px; border-radius: 15px;"
+        />
+      </div>
+
+      <!-- CONTENT SECTION -->
+      <div class="col-md-7">
+        <div class="p-4">
+
+          <h4 class="fw-bold text-primary">{{ product.name }}</h4>
+          <hr />
+
+          <p><strong>Description:</strong>
+            <span class="text-muted">{{ product.description }}</span>
+          </p>
+
+          <p><strong>Price:</strong>
+            <span class="text-success fw-bold">₹{{ product.price }}</span>
+          </p>
+
+          <p>
+            <strong>Stock:</strong>
+            <span class="{{ product.stock > 0 ? 'text-success fw-bold' : 'text-danger fw-bold' }}">
+              {{ product.stock > 0 ? product.stock : 'Out of Stock' }}
+            </span>
+          </p>
+
+          <div class="mt-4 d-flex gap-3">
+            <button class="btn btn-lg btn-primary flex-fill shadow-sm"
+                    (click)="proceedToPayment(product)">
+              Buy Now
+            </button>
+
+            <button class="btn btn-lg btn-outline-danger flex-fill shadow-sm"
+                    (click)="addToCartHandler(product)">
+              Add to Cart
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  }
+</div>
