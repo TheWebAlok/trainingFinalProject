@@ -6,10 +6,10 @@
         <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2" aria-label="Slide 3: Premium Pens"></button>
     </div>
 
-    <div class="carousel-inner">
+    <div class="carousel-inner" style="height: 300px;">
 
-        <div class="carousel-item active" style="background-color: #f0f8ff;">
-            <div class="d-flex align-items-center p-5">
+        <div class="carousel-item active" style="background-color: #f0f8ff; ">
+            <div class="d-flex  " style=" margin: 5%;">
                 <div class="col-md-7">
                     <h2 class="text-primary fw-bold">Big Savings: High-Yield Laser Toner</h2>
                     <p class="lead">Save 30% Today! Get sharp text and reliable performance for all your high-volume printing.</p>
@@ -17,14 +17,14 @@
                         Shop Toner Cartridges
                     </button>
                 </div>
-                <div class="col-md-5 text-center">
+                <div class="col-md-5 " style=" margin-bottom: 50px">
                     <img src="Bottom-image/toner.jpg" class="d-block w-100" alt="High-Yield Laser Toner Cartridges" style="max-height: 250px; object-fit: cover;">
                 </div>
             </div>
         </div>
 
         <div class="carousel-item" style="background-color: #e6f7ff;">
-            <div class="d-flex align-items-center p-5">
+            <div class="d-flex" style=" margin: 5%;">
                 <div class="col-md-7">
                     <h2 class="text-success fw-bold">Comfort Upgrade: Ergonomic Mouse</h2>
                     <p class="lead">Work Pain-Free! Vertical design for natural hand position and all-day comfort. Special offer inside.</p>
@@ -32,14 +32,14 @@
                         View Ergonomic Gear
                     </button>
                 </div>
-                <div class="col-md-5 text-center">
+                <div class="col-md-5" style=" margin-bottom: 50px">
                     <img src="Bottom-image/mouse.jpg" class="d-block w-100" alt="Ergonomic Vertical Mouse" style="max-height: 250px; object-fit: cover;">
                 </div>
             </div>
         </div>
 
         <div class="carousel-item" style="background-color: #f9f9e6;">
-            <div class="d-flex align-items-center p-5">
+            <div class="d-flex" style=" margin: 5%;">
                 <div class="col-md-7">
                     <h2 class="text-danger fw-bold">Signature Style: Premium Pen Sets</h2>
                     <p class="lead">The Perfect Gift! Smooth writing and sophisticated design for a lasting professional impression.</p>
@@ -47,7 +47,7 @@
                         Explore Pen Collection
                     </button>
                 </div>
-                <div class="col-md-5 text-center">
+                <div class="col-md-5" style=" margin-bottom: 50px">
                     <img src="Bottom-image/pro.jpg" class="d-block w-100" alt="Set of Premium Fountain Pens" style="max-height: 250px; object-fit: cover;">
                 </div>
             </div>
@@ -65,8 +65,7 @@
     </button>
 </div>
 
-<div class="container mt-5">
-  <h2 class="text-center mb-4">Our Products</h2>
+<div class="container mt-2">
 
   @for (product of products; track product.id) {
   <div class="card mb-4 shadow-lg border-0 rounded-4 overflow-hidden">
