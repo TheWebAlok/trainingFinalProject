@@ -3,11 +3,13 @@ import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../../shared/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-customer-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,CommonModule, RouterModule],
   templateUrl: './customer-header.component.html',
   styleUrls: ['./customer-header.component.css']
 })
