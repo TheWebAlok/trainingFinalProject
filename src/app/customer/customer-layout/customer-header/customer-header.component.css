@@ -75,8 +75,9 @@
 }
 @media (max-width: 991px) {
   .navbar-collapse.show {
-    background: #ffffff !important;
+    background: #1494d0 !important;
     padding: 10px;
+    color: black;
     border-radius: 8px;
   }
 }
@@ -86,7 +87,7 @@
 .nav-link.active,
 .dropdown-item.active {
   font-weight: bold;
-  color: yellow !important;
+  color: rgb(0, 213, 255) !important;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 6px;
 }
