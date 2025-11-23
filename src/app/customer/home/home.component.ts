@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   servicesList: Services[] = [];
   laminations: Limination[] = [];
   weddingCardsList: WeddingCard[] = [];
-    
+
 
 
   constructor(
@@ -49,9 +49,9 @@ export class HomeComponent implements OnInit {
     private serviceService: AddServicesService,
     private liminationService: LiminationService,
     private weddingCardService: WeddingCardService,
-        
+
   ) { }
-  
+
 
   ngOnInit() {
     this.getAllA4();
@@ -62,9 +62,9 @@ export class HomeComponent implements OnInit {
     this.getAllKeyboards();
     this.getAllWeddingCards()
     this.getAllLaminations();
-        
+
   }
- getAllWeddingCards(): void {  // ✅ class member function
+ getAllWeddingCards(): void {
     this.weddingCardService.getAllWeddingCards().subscribe(
       (cards: WeddingCard[]) => {
         this.weddingCardsList = cards;

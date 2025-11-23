@@ -1,9 +1,9 @@
 .fixed-image {
   width: 100%;
   margin-top: 1%;
-  height: 200px; /* or adjust as needed */
+  height: 200px;
   object-fit: cover;
-  border-top-left-radius: 0.5rem; /* for rounded-top effect */
+  border-top-left-radius: 0.5rem; 
   border-top-right-radius: 0.5rem;
 }
 .button1{
@@ -19,7 +19,7 @@
 }
 
 .boxshodow:hover {
-  background-color: #f9f9f9; /* light background on hover */
+  background-color: #f9f9f9;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 .imageClass{
