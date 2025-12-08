@@ -2,7 +2,8 @@
 <div class="container-fluid bg-dark fixed-top">
 
   <!-- Topbar -->
-  <div class="container-fluid bg-primary py-1 d-none rounded d-lg-flex justify-content-between">
+  <div
+    class="container-fluid bg-primary py-1 d-none rounded d-lg-flex justify-content-between">
     <div class="text-white small">
       <i class="fas fa-map-marker-alt me-1"></i> 03 Kanchanpur, Aurangabad Bihar
       <span class="mx-2">|</span>
@@ -16,16 +17,17 @@
   </div>
 
   <!-- Main Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark "  data-bs-theme="light">
+  <nav class="navbar navbar-expand-lg navbar-dark " data-bs-theme="light">
     <div class="container-fluid">
 
       <a routerLink="/home" class="navbar-brand"
-         routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-         data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         MAA Computer Press
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -35,125 +37,86 @@
 
           <li class="nav-item">
             <a routerLink="/home" class="nav-link"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              routerLinkActive="active"
+              data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
               Home
             </a>
           </li>
 
-          <li class="nav-item">
-            <a routerLink="/a4" class="nav-link"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              A4 Papers
-            </a>
-          </li>
-
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a routerLink="/product" class="nav-link"
                routerLinkActive="active"
                data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
               Product
             </a>
-          </li>
-
-          <li class="nav-item">
-            <a routerLink="/keyboards" class="nav-link"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              Keyboard
+          </li> -->
+          <!-- Dropdown -->
+          <li class="nav-item dropdown product-dropdown">
+            <a class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown">
+              Product
             </a>
-          </li>
 
-          <li class="nav-item">
-            <a routerLink="/mouses" class="nav-link"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              Mouses
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a routerLink="/muhar" class="nav-link"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              Muhar
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a routerLink="/lamination" class="nav-link"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              Lamination
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a routerLink="/printers" class="nav-link"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              Printers
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a routerLink="/services" class="nav-link"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              Services
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a routerLink="/weddingCard" class="nav-link"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              Wedding Card
-            </a>
+            <ul class="dropdown-menu product-menu">
+              <!-- <li><a routerLink="/product" class="dropdown-item"></a></li> -->
+              <li><a routerLink="/a4" class="dropdown-item">A4 Papers</a></li>
+              <li><a routerLink="/keyboards"
+                  class="dropdown-item">Keyboard</a></li>
+              <li><a routerLink="/mouses" class="dropdown-item">Mouses</a></li>
+              <li><a routerLink="/muhar" class="dropdown-item">Muhar</a></li>
+              <li><a routerLink="/lamination"
+                  class="dropdown-item">Lamination</a></li>
+              <li><a routerLink="/printers"
+                  class="dropdown-item">Printers</a></li>
+              <li><a routerLink="/services" class="dropdown-item">Printer
+                  Services</a></li>
+              <li><a routerLink="/weddingCard" class="dropdown-item">Wedding
+                  Card</a></li>
+            </ul>
           </li>
 
           <li class="nav-item">
             <a routerLink="/cart" class="nav-link"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              routerLinkActive="active"
+              data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
               Cart
             </a>
           </li>
 
           <!-- Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pages</a>
+            <a class="nav-link dropdown-toggle" href="#"
+              data-bs-toggle="dropdown">Pages</a>
 
             <ul class="dropdown-menu">
               <li>
                 <a routerLink="/serviceBook" class="dropdown-item"
-                   routerLinkActive="active"
-                   data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                  routerLinkActive="active"
+                  data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                   Services Book
                 </a>
               </li>
 
               <li>
                 <a routerLink="/paymentGateway" class="dropdown-item"
-                   routerLinkActive="active"
-                   data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                  routerLinkActive="active"
+                  data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                   Payment Gateway
                 </a>
               </li>
 
               <li>
                 <a routerLink="/billings" class="dropdown-item"
-                   routerLinkActive="active"
-                   data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                  routerLinkActive="active"
+                  data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                   Billings
                 </a>
               </li>
 
               <li>
                 <a routerLink="/error" class="dropdown-item"
-                   routerLinkActive="active"
-                   data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                  routerLinkActive="active"
+                  data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                   404 Page
                 </a>
               </li>
@@ -162,8 +125,8 @@
 
           <li class="nav-item">
             <a routerLink="/contact" class="nav-link"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              routerLinkActive="active"
+              data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
               Contact
             </a>
           </li>
@@ -171,16 +134,16 @@
 
         <div class="d-flex">
           @if (isLoggedIn) {
-            <a (click)="logout()" class="btn btn-primary"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              Logout
-            </a>
+          <a (click)="logout()" class="btn btn-primary"
+            data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            Logout
+          </a>
           } @else {
-            <a routerLink="/login" class="btn btn-primary"
-               routerLinkActive="active"
-               data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              Login
-            </a>
+          <a routerLink="/login" class="btn btn-primary"
+            routerLinkActive="active"
+            data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            Login
+          </a>
           }
         </div>
 
