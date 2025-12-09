@@ -35,7 +35,18 @@
         </button>
         <button class="list-group-item list-group-item-action text-danger py-3"
           (click)="logout()">
-          🚪 Logout
+          @if (isLoggedIn) {
+          <a (click)="logout()" class="btn btn-primary"
+            data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            Logout
+          </a>
+          } @else {
+          <a routerLink="/login" class="btn btn-primary"
+            routerLinkActive="active"
+            data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            Login
+          </a>
+          }
         </button>
       </div>
     </div>

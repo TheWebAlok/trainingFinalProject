@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./customer-header.component.css']
 })
 export class CustomerHeaderComponent implements OnInit {
-
+      
   isLoggedIn: boolean = false;
 
   constructor(
