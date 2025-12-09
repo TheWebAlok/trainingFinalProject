@@ -129,8 +129,8 @@
 }
 
 .product-menu .dropdown-item:hover {
-  background: rgba(68, 93, 238, 0.667);
-  color: #ffd700;
+  background: rgba(197, 204, 245, 0.667);
+  color: #000000;
   font-weight: 700;
   padding-left: 28px;
 }
