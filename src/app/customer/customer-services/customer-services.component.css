@@ -1,0 +1,47 @@
+.container{
+      margin-top: 10% !important;
+}
+.service-box {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #eaeaea;
+  transition: all .4s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.service-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* service image */
+.service-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  transition: .4s;
+}
+
+/* Slide-down animation on hover */
+.service-box:hover .service-img {
+  transform: scale(1.1);
+}
+
+.service-content {
+  padding: 18px;
+  background: #fff;
+  transition: .4s;
+}
+
+.service-content h5 {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #0d6efd;
+}
+
+.service-content p {
+  margin: 0;
+  color: #555;
+}

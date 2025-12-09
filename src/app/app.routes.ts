@@ -59,6 +59,7 @@ import { EditMuharComponent } from './admin/categories/edit-muhar/edit-muhar.com
 import { AllPrinterComponent } from './admin/categories/all-printer/all-printer.component';
 import { EditPrinterComponent } from './admin/categories/edit-printer/edit-printer.component';
 import { AboutComponent } from './customer/about/about.component';
+import { CustomerServicesComponent } from './customer/customer-services/customer-services.component';
 
 
 
@@ -72,6 +73,7 @@ export const routes: Routes = [
       { path: "product", component: ProductComponent },
       { path: "services", component: ServicesComponent },
       { path: "weddingCard", component: WeddingCardComponent },
+      { path: "customerServices", component: CustomerServicesComponent },
 
       { path: "keyboards", component: KeyboardComponent },
       { path: "printers", component: PrinterComponent },
